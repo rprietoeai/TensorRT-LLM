@@ -48,7 +48,7 @@ from .utils import (append_docstring, exception_handler, get_device_count,
 
 
 import logging
-logger = logging.getLogger(__name__)
+rplogger = logging.getLogger(__name__)
 FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
 logging.basicConfig(format=FORMAT)
 logger.setLevel(logging.DEBUG)
