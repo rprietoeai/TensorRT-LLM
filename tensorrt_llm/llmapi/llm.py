@@ -49,7 +49,7 @@ from .utils import (append_docstring, exception_handler, get_device_count,
 
 import logging
 rplogger = logging.getLogger(__name__)
-FORMAT = "XXXXX [%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
+FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
 logging.basicConfig(format=FORMAT)
 rplogger.setLevel(logging.DEBUG)
 
