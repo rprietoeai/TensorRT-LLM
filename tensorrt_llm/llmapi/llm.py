@@ -293,7 +293,7 @@ class BaseLLM:
         Returns:
             Union[tensorrt_llm.llmapi.RequestOutput, List[tensorrt_llm.llmapi.RequestOutput]]: The output data of the completion request to the LLM.
         """
-        logger.debug("Entering generate")
+        rplogger.debug("Entering generate")
         unbatched = not isinstance(inputs, list)
         if not unbatched:
             if isinstance(inputs[0], int):
