@@ -287,6 +287,7 @@ class BaseLLM:
         Returns:
             Union[tensorrt_llm.llmapi.RequestOutput, List[tensorrt_llm.llmapi.RequestOutput]]: The output data of the completion request to the LLM.
         """
+        print(f"XXXXXX: Generate")
         unbatched = not isinstance(inputs, list)
         if not unbatched:
             if isinstance(inputs[0], int):
