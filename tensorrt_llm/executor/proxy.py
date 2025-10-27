@@ -447,6 +447,7 @@ class GenerationExecutorProxy(GenerationExecutor):
 
         self._handle_background_error()
 
+        ramon.log("Returning")
         return result
 
     def __del__(self):
