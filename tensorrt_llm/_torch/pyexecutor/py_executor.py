@@ -1751,6 +1751,7 @@ class PyExecutor:
     def _forward_step(self,
                       scheduled_requests,
                       new_tensors_device: Optional[SampleStateTensors] = None):
+        ramon.log("Inside function")
 
         @nvtx_range(
             f"[Executor] _forward_step {self.model_engine.iter_counter + 1}: {len(scheduled_requests.context_requests)} ctx reqs, {len(scheduled_requests.generation_requests)} gen reqs"
