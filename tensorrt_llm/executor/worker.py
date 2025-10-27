@@ -413,6 +413,7 @@ def worker_main(
                         ramon.log("It's a cancel request")
                         worker.abort_request(req.id)
                     elif isinstance(req, GenerationRequest):
+                        ramon.log("It's a generation request")
                         try:
                             worker.submit(req)
                         except RequestError as e:
