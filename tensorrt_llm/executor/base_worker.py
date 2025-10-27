@@ -491,12 +491,14 @@ class BaseWorker(GenerationExecutor):
             executor_request.py_lora_path = py_lora_path
 
             if self._is_pytorch_backend and request.multimodal_params is not None:
+                ramon.log("doing multimodal part of the tllm request")
                 if request.multimodal_params.multimodal_data is not None:
                     # NOTE: Deserialize SharedTensor handle to actual tensor
                     request.multimodal_params.to_tensor("multimodal_data")
                     executor_request.py_multimodal_data = request.multimodal_params.multimodal_data
 
             if self._is_pytorch_backend and request.sampling_params.logits_processor:
+                ramon.log("doing sampling part of the tllm request")
                 # For PyTorch backend, we attach logits processors as a dynamic Python attribute
                 # instead of using the C++ binding, since the latter will cause PyCapsule pickling issues.
                 lp = request.sampling_params.logits_processor
@@ -514,6 +516,7 @@ class BaseWorker(GenerationExecutor):
                 # pytorch star attention workflow
                 # a workaround to avoid public interface update
                 if self._is_pytorch_backend and result_wait_queue is not None:
+                    ramon.log("queing request")
                     req_id = self.engine.enqueue_request(
                         executor_request,
                         request.query_token_ids,
