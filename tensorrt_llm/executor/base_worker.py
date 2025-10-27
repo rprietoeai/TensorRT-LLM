@@ -542,8 +542,10 @@ class BaseWorker(GenerationExecutor):
         if request.id is None:
             request.set_id(client_id)
 
+        ramon.log("Getting logprob params")
         logprob_params = self._get_logprob_params(request)
 
+        ramon.log("creating generation result")
         result = GenerationResult(
             request,
             background_error_handler=self._handle_background_error,
@@ -551,6 +553,7 @@ class BaseWorker(GenerationExecutor):
             disaggregated_params=request.disaggregated_params,
             logprob_params=logprob_params)
 
+        ramon.log("Adding result to map")
         self._results[client_id] = result
 
         request_id = self._enqueue_request(request)
