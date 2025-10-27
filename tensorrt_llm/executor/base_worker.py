@@ -561,8 +561,10 @@ class BaseWorker(GenerationExecutor):
         # request_id returned from backend is necessary for the abort_request method.
         self._client_id_to_request_id[client_id] = request_id
 
+        ramon.log("handle background error")
         self._handle_background_error()
 
+        ramon.log("returningresult")
         return result
 
     def shutdown(self):
