@@ -526,7 +526,7 @@ class BaseWorker(GenerationExecutor):
 
     def submit(self, request: GenerationRequest) -> GenerationResult:
         ramon.log("Inside function")
-        ramon.log("Right befor starting")
+        ramon.log("Right befor starting worker")
         """ Low-level API to the executor. Return a "future" GenerationResult which can be waited. """
         self.start()
 
@@ -536,6 +536,7 @@ class BaseWorker(GenerationExecutor):
                 "To fix this, ensure that the llm.generate(...) method is "
                 "guarded with the `if __name__ == '__main__':` block.")
 
+        ramon.log("Setting request id")
         client_id = request.id if request.id is not None else self._get_next_client_id(
         )
         if request.id is None:
