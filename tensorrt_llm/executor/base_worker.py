@@ -346,6 +346,7 @@ class BaseWorker(GenerationExecutor):
         multimodal_input = None
         if request.multimodal_params is not None and request.multimodal_params.has_content(
         ):
+            ramon.log("Figuring out multi modal")
             if request.multimodal_params.multimodal_input is not None:
                 multimodal_input = tllm.MultimodalInput(
                     multimodal_hashes=request.multimodal_params.
