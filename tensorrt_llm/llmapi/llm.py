@@ -464,6 +464,7 @@ class BaseLLM:
                         inputs, sampling_params)
             prompt = inputs['prompt']
             if extra_processed_inputs is not None:
+                ramon.log(f"in branch where there are extra processed inputs")
                 query_token_ids = extra_processed_inputs.get('query_token_ids')
                 # Create unified MultimodalParams
                 multimodal_params = MultimodalParams(
