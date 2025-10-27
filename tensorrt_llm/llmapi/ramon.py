@@ -16,6 +16,6 @@ def log(msg: str):
     elif 'cls' in caller_frame.frame.f_locals:
         class_name = caller_frame.frame.f_locals['cls'].__name__
 
-    print(f"XXXX::{filename}::{class_name}::{function_name}::{line_number}::{msg}")
+    print(f"XXXXX::{filename}::{class_name}::{function_name}::{line_number}::{msg}")
     return filename, class_name, function_name, line_number
 
