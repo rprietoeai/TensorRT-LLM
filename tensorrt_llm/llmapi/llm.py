@@ -326,6 +326,7 @@ class BaseLLM:
                            desc="Processed requests",
                            dynamic_ncols=True,
                            disable=not use_tqdm):
+            ramon.log(f"Getting result from future")
             future.result()
 
         if unbatched:
