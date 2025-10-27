@@ -157,6 +157,7 @@ class GenerationExecutor(ABC):
             scheduling_params=scheduling_params,
             cache_salt_id=cache_salt_id,
             arrival_time=arrival_time)
+        ramon.log("Right before submitting request request")
         result = self.submit(request)
         # release memory in time
         if hasattr(request, "multimodal_params"):
