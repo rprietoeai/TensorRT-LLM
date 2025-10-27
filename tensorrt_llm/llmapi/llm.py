@@ -457,6 +457,7 @@ class BaseLLM:
                 prompt_token_ids, extra_processed_inputs = self.input_processor.attach_multimodal_embeddings(
                     inputs, mm_embedding_info, sampling_params)
             else:
+                ramon.log(f"branch without any multimodal data")
                 with nvtx_range_debug("input_processor"):
                     prompt_token_ids, extra_processed_inputs = self.input_processor(
                         inputs, sampling_params)
