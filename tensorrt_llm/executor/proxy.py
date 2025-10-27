@@ -421,7 +421,7 @@ class GenerationExecutorProxy(GenerationExecutor):
             which can be waited.
             Forwards the request to the workers through the request queue.
         """
-
+        ramon.log("Inside function")
         self._start_dispatch_threads()
 
         request.set_id(self._get_next_client_id())
