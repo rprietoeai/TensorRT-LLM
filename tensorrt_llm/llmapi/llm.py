@@ -366,6 +366,7 @@ class BaseLLM:
         Returns:
             tensorrt_llm.llmapi.RequestOutput: The output data of the completion request to the LLM.
         """
+        ramon.log(f"Insidef unction")
 
         # Check if the worker is shutting down
         if self._executor is None or self._executor.is_shutdown():
