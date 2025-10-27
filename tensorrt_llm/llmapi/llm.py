@@ -492,6 +492,7 @@ class BaseLLM:
         if _postproc_params:
             _postproc_params.postproc_args.num_prompt_tokens = len(
                 prompt_token_ids)
+        ramon.log(f"executor class is {type(self._executor)}")
         ramon.log(f"Before _executor.generate_async")
         result = self._executor.generate_async(
             prompt_token_ids,
