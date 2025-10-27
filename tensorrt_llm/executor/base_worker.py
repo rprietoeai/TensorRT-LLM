@@ -556,6 +556,7 @@ class BaseWorker(GenerationExecutor):
         ramon.log("Adding result to map")
         self._results[client_id] = result
 
+        ramon.log("Adding request to queue")
         request_id = self._enqueue_request(request)
         # request_id returned from backend is necessary for the abort_request method.
         self._client_id_to_request_id[client_id] = request_id
