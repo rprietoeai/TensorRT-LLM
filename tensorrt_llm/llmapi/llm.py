@@ -459,6 +459,7 @@ class BaseLLM:
             else:
                 ramon.log(f"branch without any multimodal data")
                 with nvtx_range_debug("input_processor"):
+                    ramon.log(f"getting prompt ids")
                     prompt_token_ids, extra_processed_inputs = self.input_processor(
                         inputs, sampling_params)
             prompt = inputs['prompt']
