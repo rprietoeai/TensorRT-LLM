@@ -436,11 +436,11 @@ class BaseLLM:
                     multimodal_data={"multimodal_embedding": mm_handles})
 
         elif "prompt_token_ids" in inputs:
-            ramon.log(f"before getting propmt token ids from inputs")
             prompt_token_ids = inputs['prompt_token_ids']
             prompt = None
             query_token_ids = inputs.get("query_token_ids", None)
         elif "prompt" in inputs:
+            ramon.log(f"branch: prompt is in inputs")
             if 'multi_modal_data' in inputs:
                 # TODO: The current design uses a wrapper for existing input processor (input_processor_with_hash)
                 # to handle/add multimodal hashes, positions, and lengths. Now we only support image modality.
