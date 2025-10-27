@@ -307,6 +307,7 @@ class BaseLLM:
 
         futures = []
         for i, request_inputs in enumerate(inputs):
+            ramon.log(f"Right before calling generate_async for sentence: {request_inputs}")
             future = self.generate_async(
                 request_inputs,
                 sampling_params=_item_at(sampling_params, i),
