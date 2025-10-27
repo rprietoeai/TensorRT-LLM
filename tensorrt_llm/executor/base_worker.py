@@ -531,7 +531,7 @@ class BaseWorker(GenerationExecutor):
                     req_id = self.engine.enqueue_request(
                         executor_request, result_wait_queue=result_wait_queue)
                 else:
-                    ramon.log(f"engine type: {str(self.engine)}")
+                    ramon.log(f"engine type: {str(type(self.engine))}")
                     ramon.log("engine queing request without query_token_ids (this one gets executed)")
                     req_id = self.engine.enqueue_request(executor_request)
             return req_id
