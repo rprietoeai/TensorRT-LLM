@@ -516,16 +516,18 @@ class BaseWorker(GenerationExecutor):
                 # pytorch star attention workflow
                 # a workaround to avoid public interface update
                 if self._is_pytorch_backend and result_wait_queue is not None:
-                    ramon.log("queing request")
+                    ramon.log("queing request pytorch backend without waiting")
                     req_id = self.engine.enqueue_request(
                         executor_request,
                         request.query_token_ids,
                         result_wait_queue=result_wait_queue)
                 else:
+                    ramon.log("queing request")
                     req_id = self.engine.enqueue_request(
                         executor_request, request.query_token_ids)
             else:
                 if self._is_pytorch_backend and result_wait_queue is not None:
+                    ramon.log("queing request without query_token_ids with backedn and with waiting")
                     req_id = self.engine.enqueue_request(
                         executor_request, result_wait_queue=result_wait_queue)
                 else:
