@@ -410,6 +410,7 @@ def worker_main(
                 while (req := request_queue.get()) is not None:
                     ramon.log("Inside while request_queue.get")
                     if isinstance(req, CancellingRequest):
+                        ramon.log("It's a cancel request")
                         worker.abort_request(req.id)
                     elif isinstance(req, GenerationRequest):
                         try:
