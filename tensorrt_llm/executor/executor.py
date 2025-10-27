@@ -133,7 +133,7 @@ class GenerationExecutor(ABC):
         """Generate output for the given prompt token ids in the asynchronous mode.
         Asynchronous generation accepts single prompt only.
         """
-        ramon.log(Inside function)
+        ramon.log("Inside function")
         assert isinstance(prompt_token_ids[0], int)
         assert isinstance(sampling_params, SamplingParams)
 
