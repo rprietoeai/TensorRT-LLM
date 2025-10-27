@@ -12,6 +12,7 @@ from typing import (TYPE_CHECKING, AsyncIterable, Dict, Generator, List,
 
 import numpy as np
 import torch
+from ..llmapi import ramon
 
 from tensorrt_llm.inputs.multimodal import MultimodalParams
 from tensorrt_llm.logger import logger, set_level
@@ -132,6 +133,7 @@ class GenerationExecutor(ABC):
         """Generate output for the given prompt token ids in the asynchronous mode.
         Asynchronous generation accepts single prompt only.
         """
+        ramon.log
         assert isinstance(prompt_token_ids[0], int)
         assert isinstance(sampling_params, SamplingParams)
 
