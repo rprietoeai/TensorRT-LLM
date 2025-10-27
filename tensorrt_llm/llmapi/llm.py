@@ -416,6 +416,7 @@ class BaseLLM:
                     "Multimodal disaggregated inference is not supported for this model"
                 )
             mm_handles = disaggregated_params.multimodal_embedding_handles
+            ramon.log(f"Before getting prompt token ids")
             prompt_token_ids, mm_token_length, mm_token_positions = self.input_processor.get_prompt_token_ids(
                 inputs, mm_handles)
             prompt = inputs.get("prompt", None)
