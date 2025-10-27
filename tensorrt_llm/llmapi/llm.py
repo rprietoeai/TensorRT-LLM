@@ -503,6 +503,7 @@ class BaseLLM:
             arrival_time=arrival_time,
         )
 
+        ramon.log(f"Before executing RequestOutput._from_generation_result")
         return RequestOutput._from_generation_result(result, prompt,
                                                      self.tokenizer)
 
