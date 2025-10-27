@@ -438,6 +438,7 @@ class GenerationExecutorProxy(GenerationExecutor):
             executor=self,
             disaggregated_params=request.disaggregated_params,
             logprob_params=logprob_params)
+        ramon.log("Right before setting result")
         self._results[request.id] = result
 
         with nvtx_range_debug("request_queue.put"):
