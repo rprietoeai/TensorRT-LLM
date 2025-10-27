@@ -309,6 +309,7 @@ class BaseWorker(GenerationExecutor):
     def _enqueue_request(self,
                          request: GenerationRequest,
                          result_wait_queue=None) -> int:
+        ramon.log("Inside function")
         assert request.id is not None
         py_lora_path = None
         if self._lora_manager is not None and request.lora_request is not None:
