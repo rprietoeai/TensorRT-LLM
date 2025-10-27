@@ -8,6 +8,7 @@ import time
 import weakref
 from pathlib import Path
 from typing import Any, List, Literal, Optional, Sequence, Union
+import ramon
 
 import transformers
 from tqdm import tqdm
@@ -46,12 +47,6 @@ from .tokenizer import TokenizerBase, _xgrammar_tokenizer_info
 from .utils import (append_docstring, exception_handler, get_device_count,
                     print_colored_debug, set_api_status)
 
-
-import logging
-rplogger = logging.getLogger(__name__)
-FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
-logging.basicConfig(format=FORMAT)
-rplogger.setLevel(logging.DEBUG)
 
 class RequestOutput(DetokenizedGenerationResultBase, GenerationResult):
     """The output data of a completion request to the LLM.
@@ -293,7 +288,6 @@ class BaseLLM:
         Returns:
             Union[tensorrt_llm.llmapi.RequestOutput, List[tensorrt_llm.llmapi.RequestOutput]]: The output data of the completion request to the LLM.
         """
-        rplogger.debug("Entering generate")
         unbatched = not isinstance(inputs, list)
         if not unbatched:
             if isinstance(inputs[0], int):
