@@ -408,6 +408,7 @@ def worker_main(
                         "Failed to deliver ready signal to proxy, continuing anyway"
                     )
                 while (req := request_queue.get()) is not None:
+                    ramon.log("Inside while request_queue.get")
                     if isinstance(req, CancellingRequest):
                         worker.abort_request(req.id)
                     elif isinstance(req, GenerationRequest):
