@@ -395,6 +395,7 @@ class BaseLLM:
                 or inputs.get("multi_modal_embeddings")) and not isinstance(
                     self.input_processor, DefaultInputProcessor):
             # VLMs need to process/tokenize the prompt in their own way
+            ramon.log(f"Before executing tokenizer")
             prompt = self.tokenizer.decode(inputs['prompt_token_ids'])
             inputs = TextPrompt(
                 prompt=prompt,
