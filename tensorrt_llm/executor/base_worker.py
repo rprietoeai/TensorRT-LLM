@@ -446,6 +446,7 @@ class BaseWorker(GenerationExecutor):
             return max_tokens
 
         try:
+            ramon.log("creating tllm request")
             executor_request = tllm.Request(
                 client_id=request.id,
                 input_token_ids=prompt_token_ids,
