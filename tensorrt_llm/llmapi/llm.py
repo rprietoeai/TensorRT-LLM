@@ -332,6 +332,7 @@ class BaseLLM:
         if unbatched:
             futures = futures[0]
 
+        ramon.log(f"Returning")
         return futures
 
     @nvtx_range_debug("LLM.generate_async", color="green", category="LLM")
