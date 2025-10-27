@@ -355,6 +355,7 @@ class PyExecutor:
                         self.kv_connector_manager.layer_post_hook)
 
     def _event_loop_wrapper(self):
+        ramon.log("Iniside functon")
         try:
             with customized_gc_thresholds(
                     self.garbage_collection_gen0_threshold):
@@ -804,6 +805,7 @@ class PyExecutor:
         self.shutdown_event.set()
 
     def _executor_loop_pp(self):
+        ramon.log("Iniside functon")
         logger.debug(f"Starting executor loop for pp_rank {self.dist.pp_rank}")
         torch.cuda.set_device(self.device_id)
         # ensure the context is created, otherwise, some MPI calls will fail.
@@ -1105,6 +1107,7 @@ class PyExecutor:
                 torch.cuda.current_stream())
 
     def _executor_loop(self):
+        ramon.log("Iniside functon")
         torch.cuda.set_device(self.device_id)
         # ensure the context is created, otherwise, some MPI calls will fail.
         CUASSERT(cudart.cudaSetDevice(self.device_id))
@@ -1241,6 +1244,7 @@ class PyExecutor:
             self._handle_errors(error_msg)
 
     def _executor_loop_overlap(self):
+        ramon.log("Iniside functon")
         torch.cuda.set_device(self.device_id)
         # ensure the context is created, otherwise, some MPI calls will fail.
         CUASSERT(cudart.cudaSetDevice(self.device_id))
