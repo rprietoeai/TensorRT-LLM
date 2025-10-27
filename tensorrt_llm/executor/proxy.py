@@ -423,11 +423,15 @@ class GenerationExecutorProxy(GenerationExecutor):
             Forwards the request to the workers through the request queue.
         """
         ramon.log("Inside function")
+        ramon.log("Right before dispatching threads")
         self._start_dispatch_threads()
 
+        ramon.log("Right before setting ids")
         request.set_id(self._get_next_client_id())
+        ramon.log("Right getting logprob params")
         logprob_params = self._get_logprob_params(request)
 
+        ramon.log("Right before getting generation result")
         result = GenerationResult(
             request,
             background_error_handler=self._handle_background_error,
