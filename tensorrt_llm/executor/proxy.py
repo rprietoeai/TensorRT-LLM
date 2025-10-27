@@ -442,6 +442,7 @@ class GenerationExecutorProxy(GenerationExecutor):
         self._results[request.id] = result
 
         with nvtx_range_debug("request_queue.put"):
+            ramon.log("Putting request in queue")
             self.request_queue.put(request)
 
         self._handle_background_error()
