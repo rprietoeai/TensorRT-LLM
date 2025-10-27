@@ -10,7 +10,7 @@ import traceback
 import weakref
 from contextlib import contextmanager
 from typing import Dict, Iterable, List, Optional, Tuple, Union
-from . import ramon
+from ...llmapi import ramon
 
 import torch
 
