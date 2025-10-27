@@ -6,6 +6,7 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 from queue import Queue
 from typing import Callable, List, Optional, Union
+from ..llmapi import ramon
 
 import zmq
 
