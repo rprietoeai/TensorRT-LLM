@@ -8,7 +8,7 @@ import time
 import weakref
 from pathlib import Path
 from typing import Any, List, Literal, Optional, Sequence, Union
-import ramon
+from . import ramon
 
 import transformers
 from tqdm import tqdm
