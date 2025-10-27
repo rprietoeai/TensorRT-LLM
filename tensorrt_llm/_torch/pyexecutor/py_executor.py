@@ -1764,6 +1764,7 @@ class PyExecutor:
         )
         def forward(scheduled_requests, resource_manager, new_tensors_device,
                     gather_context_logits, cache_indirection_buffer):
+            ramon.log("Inside function")
             return self.model_engine.forward(
                 scheduled_requests,
                 resource_manager,
