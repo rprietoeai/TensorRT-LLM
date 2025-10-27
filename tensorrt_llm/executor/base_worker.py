@@ -525,6 +525,7 @@ class BaseWorker(GenerationExecutor):
             raise RequestError(str(e)) from e
 
     def submit(self, request: GenerationRequest) -> GenerationResult:
+        ramon.log("Inside function")
         """ Low-level API to the executor. Return a "future" GenerationResult which can be waited. """
         self.start()
 
