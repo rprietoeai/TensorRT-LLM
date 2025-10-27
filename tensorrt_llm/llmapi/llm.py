@@ -436,6 +436,7 @@ class BaseLLM:
                     multimodal_data={"multimodal_embedding": mm_handles})
 
         elif "prompt_token_ids" in inputs:
+            ramon.log(f"before getting propmt token ids from inputs")
             prompt_token_ids = inputs['prompt_token_ids']
             prompt = None
             query_token_ids = inputs.get("query_token_ids", None)
