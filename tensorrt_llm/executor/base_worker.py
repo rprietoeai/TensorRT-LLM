@@ -361,6 +361,7 @@ class BaseWorker(GenerationExecutor):
         context_phase_params = None
         request_type = tllm.RequestType.REQUEST_TYPE_CONTEXT_AND_GENERATION
         if request.disaggregated_params is not None:
+            ramon.log("Figuring out disagregation")
             assert (
                 not self._is_pytorch_backend
                 or self.engine.kv_cache_transceiver is not None
@@ -373,6 +374,7 @@ class BaseWorker(GenerationExecutor):
                 )
 
         if self._is_pytorch_backend:
+            ramon.log("Figuring out more of disagregation")
             if not self.llm_args.disable_overlap_scheduler:
                 is_disaggregated = self.engine.kv_cache_transceiver is not None
                 if is_disaggregated and (
