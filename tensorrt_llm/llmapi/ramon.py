@@ -20,5 +20,5 @@ def get_caller_info():
 
 def log(msg: str):
     fn, cn, fn, ln = get_caller_info()
-    print(f"{fn}::{cn}::{fn}::{ln}::{msg}")
+    print(f"XXXX::{fn}::{cn}::{fn}::{ln}::{msg}")
 
