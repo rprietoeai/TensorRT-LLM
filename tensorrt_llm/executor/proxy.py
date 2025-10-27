@@ -431,7 +431,7 @@ class GenerationExecutorProxy(GenerationExecutor):
         ramon.log("Right getting logprob params")
         logprob_params = self._get_logprob_params(request)
 
-        ramon.log("Right before getting generation result")
+        ramon.log("Right before creating generation result")
         result = GenerationResult(
             request,
             background_error_handler=self._handle_background_error,
