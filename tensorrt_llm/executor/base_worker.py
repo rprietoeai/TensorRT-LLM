@@ -313,6 +313,7 @@ class BaseWorker(GenerationExecutor):
         assert request.id is not None
         py_lora_path = None
         if self._lora_manager is not None and request.lora_request is not None:
+            ramon.log("Figuring out lora config")
             adapter_in_cache = self._lora_manager.is_adapter_in_cpu_cache(
                 request.lora_request.adapter_id)
             self._load_lora_adapter(request.lora_request)
@@ -329,6 +330,7 @@ class BaseWorker(GenerationExecutor):
         prompt_token_ids = copy.deepcopy(request.prompt_token_ids)
         prompt_tuning_config = None
         if request.prompt_adapter_request is not None:
+            ramon.log("Figuring out prompt adapter")
             self._load_prompt_adapter(request.prompt_adapter_request)
             uid = str(request.prompt_adapter_request.adapter_id)
             prompt_tuning_config = tllm.PromptTuningConfig(
