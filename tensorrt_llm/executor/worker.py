@@ -415,6 +415,7 @@ def worker_main(
                     elif isinstance(req, GenerationRequest):
                         ramon.log("It's a generation request")
                         try:
+                            ramon.log(f"worker class: {str(type(worker))}")
                             ramon.log("Submitting request to worker")
                             worker.submit(req)
                         except RequestError as e:
