@@ -2240,6 +2240,7 @@ class PyTorchModelEngine(ModelEngine):
         gather_context_logits: bool = False,
         cache_indirection_buffer: Optional[torch.Tensor] = None,
     ):
+        ramon.log("Inside function.")
         kv_cache_manager = resource_manager.get_resource_manager(
             self.kv_cache_manager_key)
 
