@@ -2388,6 +2388,7 @@ class PyTorchModelEngine(ModelEngine):
             logits = outputs.get('logits', None)
             # If the logits are not found, no further processing is needed.
             if logits is None:
+                ramon.log("returning outputs without logits, but is dict")
                 return outputs
         else:
             # If the model returns a single tensor, assume it is the logits and wrap it in a dict.
