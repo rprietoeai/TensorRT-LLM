@@ -2333,6 +2333,7 @@ class PyTorchModelEngine(ModelEngine):
                             outputs = self.cuda_graph_runner.replay(key, inputs)
 
             if self.forward_pass_callable is not None:
+                ramon.log("about to call forward pass callable.")
                 self.forward_pass_callable()
 
             self._execute_logit_post_processors(scheduled_requests, outputs)
