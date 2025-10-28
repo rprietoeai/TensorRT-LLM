@@ -947,6 +947,7 @@ class LlamaModel(DecoderModel):
         lora_params=None,
         **kwargs,
     ) -> torch.Tensor:
+        ramon.log("Inside function")
         if (input_ids is None) ^ (inputs_embeds is not None):
             raise ValueError(
                 "You cannot specify both input_ids and inputs_embeds at the same time, and must specify either one"
