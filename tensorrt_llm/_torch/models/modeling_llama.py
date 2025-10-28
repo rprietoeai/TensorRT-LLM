@@ -702,6 +702,8 @@ class LlamaDecoderLayer(DecoderLayer):
             hidden_states = self.input_layernorm(hidden_states)
 
         # Self Attention
+        ramon.log("XXXXXXXXXXXXXXXXx")
+        ramon.log(f"    position_ids: {str(type(position_ids))}")
         hidden_states = self.self_attn(
             position_ids=position_ids,
             hidden_states=hidden_states,
