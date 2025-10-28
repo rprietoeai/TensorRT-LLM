@@ -2365,6 +2365,7 @@ class PyTorchModelEngine(ModelEngine):
                       inputs: Dict[str, Any],
                       gather_ids: Optional[torch.Tensor],
                       gather_context_logits: bool = False) -> Dict[str, Any]:
+        ramon.log("Inside function")
         inputs = self._preprocess_inputs(inputs)
         if inputs.get('spec_metadata', None):
             gather_ids = inputs['spec_metadata'].gather_ids
