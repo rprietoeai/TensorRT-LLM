@@ -544,7 +544,7 @@ class SpecDecOneEngineForCausalLM(DecoderModelForCausalLM[TModel, TConfig],
         **kwargs,
     ) -> torch.Tensor:
         ramon.log("Inside function.")
-        ramon.log("model type {str(type(self.model))}")
+        ramon.log(f"model type {str(type(self.model))}")
         hidden_states = self.model(
             input_ids=input_ids,
             attn_metadata=attn_metadata,
