@@ -696,6 +696,7 @@ class LlamaDecoderLayer(DecoderLayer):
         spec_metadata: Optional[SpecMetadata] = None,
         **kwargs,
     ) -> torch.Tensor:
+        ramon.log("Inside forward in llama decoder layer")
         if residual is None:
             residual = hidden_states
             hidden_states = self.input_layernorm(hidden_states)
