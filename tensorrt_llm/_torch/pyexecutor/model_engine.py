@@ -2362,7 +2362,7 @@ class PyTorchModelEngine(ModelEngine):
             return trace_func(self.model.forward)(**kwargs)
         else:
             ramon.log("Inside Inside the non torch compile, non tllm")
-            ramon.log(f"model class: {str(dtype(self.model))}")
+            ramon.log(f"model class: {str(type(self.model))}")
             return self.model.forward(**kwargs)
 
     @nvtx_range("_forward_step")
