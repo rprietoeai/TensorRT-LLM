@@ -2399,6 +2399,7 @@ class PyTorchModelEngine(ModelEngine):
         if gather_ids is not None:
             outputs['logits'] = logits[gather_ids]
 
+        ramon.log("last option to return outputs")
         return outputs
 
     @nvtx_range("_forward_step_mm_encoder_only")
