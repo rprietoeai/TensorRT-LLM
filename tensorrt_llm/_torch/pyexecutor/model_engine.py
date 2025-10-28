@@ -2303,6 +2303,7 @@ class PyTorchModelEngine(ModelEngine):
                 ramon.log("Inside with shared pool.")
                 if not maybe_graph:
                     # Fallback to eager execution if graph was not used
+                    ramon.log("Inside not maybe graph.")
                     with MoeLoadBalancerIterContext(moe_load_balancer):
                         outputs = self._forward_step(inputs, gather_ids,
                                                      gather_context_logits)
