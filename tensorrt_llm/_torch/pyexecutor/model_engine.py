@@ -2293,6 +2293,7 @@ class PyTorchModelEngine(ModelEngine):
                 else:
                     spec_metadata = None
 
+            ramon.log("Preparing inputs.")
             inputs, gather_ids = self._prepare_inputs(
                 padded_requests, kv_cache_manager, attn_metadata, spec_metadata,
                 new_tensors_device, cache_indirection_buffer)
