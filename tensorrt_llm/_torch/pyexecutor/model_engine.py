@@ -2349,7 +2349,7 @@ class PyTorchModelEngine(ModelEngine):
         attrs.update(self.model.model_config.extra_attrs)
 
         if self._torch_compile_backend is not None:
-            ramon.log("Inside function")
+            ramon.log("inside torch compile backend branch")
             # Register aux streams and events to model extra attrs.
             # The streams and events are list which could be updated during compilation.
             attrs["aux_streams"] = weakref.ref(
@@ -2358,8 +2358,10 @@ class PyTorchModelEngine(ModelEngine):
             attrs["global_stream"] = torch.cuda.current_stream()
 
         if is_trace_enabled("TLLM_TRACE_MODEL_FORWARD"):
+            ramon.log("Inside tllm trace model forward branch")
             return trace_func(self.model.forward)(**kwargs)
         else:
+            ramon.log("Inside Inside the non torch compile, non tllm")
             return self.model.forward(**kwargs)
 
     @nvtx_range("_forward_step")
