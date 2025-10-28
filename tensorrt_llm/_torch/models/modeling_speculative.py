@@ -23,6 +23,7 @@ from .checkpoints.base_weight_mapper import BaseWeightMapper
 from .modeling_utils import (DecoderModel, DecoderModelForCausalLM, TModel,
                              register_auto_model)
 
+from ..llmapi import ramon
 
 class Eagle3Attention(Attention):
 
