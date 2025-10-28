@@ -703,6 +703,7 @@ class LlamaDecoderLayer(DecoderLayer):
 
         # Self Attention
         ramon.log("XXXXXXXXXXXXXXXXx")
+        ramon.log(f"    is_nvfp4: {str(type(self.is_nvfp4))}")
         ramon.log(f"    attention class: {str(type(self.self_attn))}")
         ramon.log(f"    position_ids: {str(position_ids.dtype)}")
         ramon.log(f"    hidden_states: {str(hidden_states.dtype)}")
