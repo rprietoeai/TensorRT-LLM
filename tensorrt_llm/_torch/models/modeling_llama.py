@@ -703,8 +703,8 @@ class LlamaDecoderLayer(DecoderLayer):
 
         # Self Attention
         ramon.log("XXXXXXXXXXXXXXXXx")
-        ramon.log(f"    position_ids: {str(type(position_ids))}")
-        ramon.log(f"    hidden_states: {str(type(hidden_states))}")
+        ramon.log(f"    position_ids: {str(position_ids.dtype)}")
+        ramon.log(f"    hidden_states: {str(hidden_states.dtype)}")
         hidden_states = self.self_attn(
             position_ids=position_ids,
             hidden_states=hidden_states,
