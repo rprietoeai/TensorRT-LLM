@@ -2380,6 +2380,7 @@ class PyTorchModelEngine(ModelEngine):
         )
 
         if self.without_logits:
+            ramon.log("returning outputs without logits")
             return outputs
 
         if isinstance(outputs, dict):
