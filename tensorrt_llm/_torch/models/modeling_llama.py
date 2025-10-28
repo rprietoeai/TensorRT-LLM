@@ -961,6 +961,7 @@ class LlamaModel(DecoderModel):
         residual = None
 
         for decoder_layer in self.layers[:self.num_hidden_layers]:
+            ramon.log("Inside decoder layer")
             hidden_states, residual = decoder_layer(
                 position_ids=position_ids,
                 hidden_states=hidden_states,
