@@ -2336,6 +2336,7 @@ class PyTorchModelEngine(ModelEngine):
                 ramon.log("about to call forward pass callable.")
                 self.forward_pass_callable()
 
+            ramon.log("Before post processor.")
             self._execute_logit_post_processors(scheduled_requests, outputs)
 
             return outputs
