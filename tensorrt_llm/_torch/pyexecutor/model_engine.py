@@ -2349,6 +2349,7 @@ class PyTorchModelEngine(ModelEngine):
         attrs.update(self.model.model_config.extra_attrs)
 
         if self._torch_compile_backend is not None:
+            ramon.log("Inside function")
             # Register aux streams and events to model extra attrs.
             # The streams and events are list which could be updated during compilation.
             attrs["aux_streams"] = weakref.ref(
