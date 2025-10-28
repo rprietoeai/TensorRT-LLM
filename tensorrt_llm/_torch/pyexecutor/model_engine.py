@@ -2300,6 +2300,7 @@ class PyTorchModelEngine(ModelEngine):
 
             self.iter_counter += 1
             with with_shared_pool(self.cuda_graph_runner.get_graph_pool()):
+                ramon.log("Inside with shared pool.")
                 if not maybe_graph:
                     # Fallback to eager execution if graph was not used
                     with MoeLoadBalancerIterContext(moe_load_balancer):
