@@ -48,6 +48,7 @@ from .modeling_utils import (DecoderModel, DecoderModelForCausalLM,
 
 DISAGG = os.getenv('TLLM_MULTIMODAL_DISAGGREGATED', '0') == '1'
 
+from ...llmapi import ramon
 
 class Llama4Attention(Attention):
 
