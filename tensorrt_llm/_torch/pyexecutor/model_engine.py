@@ -2308,6 +2308,7 @@ class PyTorchModelEngine(ModelEngine):
                         outputs = self._forward_step(inputs, gather_ids,
                                                      gather_context_logits)
                 else:
+                    ramon.log("Inside else not maybe graph.")
                     if self.cuda_graph_runner.needs_capture(key):
 
                         def capture_forward_fn(inputs: Dict[str, Any]):
