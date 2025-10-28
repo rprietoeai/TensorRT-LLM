@@ -2372,6 +2372,7 @@ class PyTorchModelEngine(ModelEngine):
 
         # For simplicity, just return all the the logits if we have special gather_ids
         # from speculative decoding.
+        ramon.log("right befor model_forward")
         outputs = self.model_forward(
             **inputs,
             return_context_logits=gather_ids is not None
