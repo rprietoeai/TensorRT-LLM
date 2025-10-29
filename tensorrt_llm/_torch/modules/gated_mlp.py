@@ -151,6 +151,7 @@ class GatedMLP(nn.Module):
         ramon.log("before gate up proj")
         h1 = self.gate_up_proj(x)
         ramon.log("before apply activation")
+        ramon.log(f"gate up projection class: {type(self._apply_activation)}")
         h2 = self._apply_activation(h1)
         ramon.log("before down projection")
         output = self.down_proj(h2,
