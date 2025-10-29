@@ -2019,6 +2019,7 @@ class Linear(nn.Module):
             ramon.log("--->Using no tensor parallelism")
             output = self.apply_linear(input, self.bias, lora_params, layer_idx)
 
+        ramon.log("--->Returning output")
         return output
 
     def load_weights(self, weights: List[Dict]):
