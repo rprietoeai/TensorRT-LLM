@@ -798,6 +798,7 @@ class NVFP4LinearMethod(LinearMethodBase):
             ramon.log(f"---|---|--->act_fp4 dtype: {act_fp4.dtype}")
             ramon.log(f"---|---|--->act_fp4 shape: {act_fp4.shape}")
             ramon.log(f"---|---|--->act_sf dtype: {act_sf.dtype}")
+            ramon.log(f"---|---|--->act_sf shape: {act_sf.shape}")
 
 
         if IS_CUTLASS_DSL_AVAILABLE and module.use_cute_dsl_nvfp4_blockscaling_mm:
