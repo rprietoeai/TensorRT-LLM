@@ -550,6 +550,7 @@ class Attention(nn.Module):
                     q_gate.view(*orig_shape, self.num_heads, -1), 2, dim=-1)
             ]
         else:
+            ramon.log("We don't have an output_gate")
             q, k, v = qkv, None, None
 
         q, k, v = self.apply_rope(q, k, v, position_ids)
