@@ -28,6 +28,7 @@ from ...models.modeling_utils import QuantConfig
 from ..cute_dsl_utils import IS_CUTLASS_DSL_AVAILABLE
 from ..utils import Fp4QuantizedTensor
 
+from ...llmapi import ramon
 
 class WeightMode(str, enum.Enum):
     # weight of a vanilla layer
