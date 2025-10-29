@@ -773,6 +773,7 @@ class LlamaDecoderLayer(DecoderLayer):
                                                       hidden_states, residual)
 
         if self.POST_MLP_FUSION:
+            ramon.log(f"we have to do post mlp fusion")
             # If there is no extra layernorm, do another pure allreduce.
             if self.next_layer_layernorm is None:
                 hidden_states, residual = self.all_reduce(
