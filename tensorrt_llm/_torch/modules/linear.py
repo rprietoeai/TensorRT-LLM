@@ -1996,6 +1996,7 @@ class Linear(nn.Module):
     ) -> torch.Tensor:
         ramon.log("--->Inside function")
         if self.tp_mode == TensorParallelMode.ROW:
+            ramon.log("--->Using row wise tensor parallelism")
             bias = None if (self.tp_rank > 0) else self.bias
             if self.reduce_output:
                 fuse_bias = self._maybe_fuse_bias_into_allreduce(
@@ -2009,11 +2010,13 @@ class Linear(nn.Module):
             else:
                 output = self.apply_linear(input, bias, lora_params, layer_idx)
         elif self.tp_mode == TensorParallelMode.COLUMN:
+            ramon.log("--->Using column wise tensor parallelism")
             output = self.apply_linear(input, self.bias, lora_params, layer_idx)
             if self.gather_output:
                 from ..distributed import allgather
                 output = allgather(output, self.mapping)
         else:
+            ramon.log("--->Using no tensor parallelism")
             output = self.apply_linear(input, self.bias, lora_params, layer_idx)
 
         return output
