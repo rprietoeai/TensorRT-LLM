@@ -553,6 +553,7 @@ class Attention(nn.Module):
             ramon.log("We don't have an output_gate")
             q, k, v = qkv, None, None
 
+        ramon.log("Right before applying rope")
         q, k, v = self.apply_rope(q, k, v, position_ids)
         q, k, v = self.convert_qkv(q, k, v)
 
