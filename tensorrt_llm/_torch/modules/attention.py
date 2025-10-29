@@ -561,6 +561,7 @@ class Attention(nn.Module):
         if attention_sinks is not None:
             assert self.attn_backend == "TRTLLM", "Attention sinks are only supported for TRTLLM backend."
 
+        ramon.log("Right before self.forward_impl")
         attn_output = self.forward_impl(q,
                                         k,
                                         v,
