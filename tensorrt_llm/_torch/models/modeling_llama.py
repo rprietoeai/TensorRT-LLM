@@ -809,6 +809,7 @@ class LlamaDecoderLayer(DecoderLayer):
                 else:
                     hidden_states, residual = all_reduce_output
         elif self.next_layer_layernorm:
+            ramon.log(f"we don't have to do post mlp fusion")
             hidden_states, residual = self.next_layer_layernorm(
                 hidden_states, residual)
 
