@@ -540,6 +540,7 @@ class Attention(nn.Module):
                 qkv = qkv + qkv_lora
 
         if self.attn_output_gate:
+            ramon.log("We have an output_gate")
             q_gate, k, v = qkv.split(
                 [self.q_size * 2, self.kv_size, self.kv_size], dim=-1)
             orig_shape = q_gate.shape[:-1]
