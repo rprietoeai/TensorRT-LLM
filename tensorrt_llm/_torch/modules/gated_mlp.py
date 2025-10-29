@@ -164,6 +164,8 @@ class GatedMLP(nn.Module):
         output = self.down_proj(h2,
                                 all_reduce_params=final_all_reduce_params,
                                 layer_idx=self.layer_idx)
+        ramon.log("output tensor dtype to down projection: {output.dtype}")
+        ramon.log("output tensor shape to down projection: {output.shape}")
         ramon.log("before returning output")
         return output
 
