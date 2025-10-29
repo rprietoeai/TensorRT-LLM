@@ -785,6 +785,7 @@ class NVFP4LinearMethod(LinearMethodBase):
               bias: Optional[torch.Tensor]):
         ramon.log("---|---|--->Inside function")
         if isinstance(input, Fp4QuantizedTensor):
+            ramon.log("---|---|--->Input is FP4 quantized tensor")
             act_fp4, act_sf = input.fp4_tensor, input.scaling_factor
         elif isinstance(input, tuple):
             act_fp4, act_sf = input
