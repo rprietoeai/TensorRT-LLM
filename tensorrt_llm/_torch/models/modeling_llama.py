@@ -763,6 +763,7 @@ class LlamaDecoderLayer(DecoderLayer):
         )
 
         if spec_metadata is not None:
+            ramon.log(f"spec metadata is not none")
             # We save the hidden states in the spec metadata here. In _prepare_draft_tokens,
             # PyExecutor will extract these from the model engine's spec metadata.
             # They will be passed to the draft model engine on the first draft iteration.
