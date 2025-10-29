@@ -1993,7 +1993,7 @@ class Linear(nn.Module):
         lora_params: Optional[dict] = None,
         layer_idx: Optional[int] = None,
     ) -> torch.Tensor:
-        ramon.log("    Inside function")
+        ramon.log("--->Inside function")
         if self.tp_mode == TensorParallelMode.ROW:
             bias = None if (self.tp_rank > 0) else self.bias
             if self.reduce_output:
