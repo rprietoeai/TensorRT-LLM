@@ -2004,6 +2004,7 @@ class Linear(nn.Module):
                 fuse_bias = self._maybe_fuse_bias_into_allreduce(
                     bias, all_reduce_params)
                 bias = None if fuse_bias else bias
+                ramon.log(f"--->right before apply linear")
                 output = self.apply_linear(input, bias, lora_params, layer_idx)
                 output = self.all_reduce(
                     output,
