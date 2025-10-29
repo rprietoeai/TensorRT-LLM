@@ -1962,6 +1962,7 @@ class Linear(nn.Module):
                      lora_params: Optional[dict] | None = None,
                      layer_idx: Optional[int] | None = None):
         ramon.log("---|--->Inside Function")
+        ramon.log("---|--->Right before quant method apply")
         output = self.quant_method.apply(self, input, bias)
 
         if self.lora is not None and bool(lora_params):
