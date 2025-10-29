@@ -814,10 +814,12 @@ class NVFP4LinearMethod(LinearMethodBase):
                 module.scalar_alpha, module.dtype)
         else:
             ramon.log("---|---|--->either cutlass is not available or we'll not use cute nvfp4mm")
+            ramon.log(f"---|---|--->modul dtype: {module.dtype}")
             ramon.log(f"---|---|--->modul weight dtype: {module.weight.dtype}")
             ramon.log(f"---|---|--->modul weight shape: {module.weight.shape}")
             ramon.log(f"---|---|--->modul weight scale dtype: {module.weight_scale.dtype}")
             ramon.log(f"---|---|--->modul weight scale shape: {module.weight_scale.shape}")
+            ramon.log(f"---|---|--->modul dtype: {type(module.alpha)}")
 
             ramon.log("---|---|--->Right before nvfp4 gemm (non cute)")
             output = torch.ops.trtllm.nvfp4_gemm(act_fp4, module.weight, act_sf,
