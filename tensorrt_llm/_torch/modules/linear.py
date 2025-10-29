@@ -807,6 +807,8 @@ class NVFP4LinearMethod(LinearMethodBase):
             output = torch.ops.trtllm.nvfp4_gemm(act_fp4, module.weight, act_sf,
                                                  module.weight_scale,
                                                  module.alpha, module.dtype)
+
+        ramon.log("---|---|--->Right before nvfp4 gemm (non cute)")
         if bias is not None:
             output = output + bias
         return output
