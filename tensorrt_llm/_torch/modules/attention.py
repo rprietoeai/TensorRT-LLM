@@ -528,6 +528,7 @@ class Attention(nn.Module):
         qkv = self.qkv_proj(hidden_states)
 
         if bool(lora_params):
+            ramon.log("Doing things related to lora parameters")
             qkv_lora = self.splitted_qkv_lora(hidden_states, lora_params,
                                               self.layer_idx)
             if qkv_lora is not None:
