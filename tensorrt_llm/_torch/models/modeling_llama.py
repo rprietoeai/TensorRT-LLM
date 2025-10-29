@@ -719,7 +719,7 @@ class LlamaDecoderLayer(DecoderLayer):
         )
         # Fully Connected
         if self.PRE_MLP_FUSION:
-            ramon.log(f"Inside PreMLP Fusion condition")
+            ramon.log(f"we do pre mlp fusion")
             if self.is_nvfp4 or self.is_fp8_quant:
                 scale = self.mlp.gate_up_proj.input_scale
             else:
@@ -740,6 +740,7 @@ class LlamaDecoderLayer(DecoderLayer):
             else:
                 hidden_states, residual = all_reduce_output
         else:
+            ramon.log(f"Inside PreMLP Fusion condition")
             hidden_states, residual = self.post_attention_layernorm(
                 hidden_states, residual)
 
