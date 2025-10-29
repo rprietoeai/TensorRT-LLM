@@ -702,7 +702,7 @@ class LlamaDecoderLayer(DecoderLayer):
             hidden_states = self.input_layernorm(hidden_states)
 
         # Self Attention
-        ramon.log("XXXXXXXXXXXXXXXXX FORWARD PASS IN MODEL")
+        ramon.log("XXXXXXXXXXXXXXXXX FORWARD PASS ONE LAYER")
         ramon.log(f"is_nvfp4: {str(self.is_nvfp4)}")
         ramon.log(f"attention class: {str(type(self.self_attn))}")
         ramon.log(f"position_ids: {str(position_ids.dtype)}")
