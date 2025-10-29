@@ -1968,7 +1968,7 @@ class Linear(nn.Module):
         ramon.log(f"---|--->self.lora is none: {self.lora is None}")
         ramon.log(f"---|--->bool of lora_params: {bool(lora_params)}")
         if self.lora is not None and bool(lora_params):
-            ramon.log(f"---|--->Inside ")
+            ramon.log(f"---|--->Inside lora if statement")
             lora_result = self.lora(input, lora_params, layer_idx)
             if lora_result is not None:
                 output = output + lora_result
