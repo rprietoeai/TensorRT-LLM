@@ -1998,6 +1998,7 @@ class Linear(nn.Module):
         if self.tp_mode == TensorParallelMode.ROW:
             ramon.log("--->Using row wise tensor parallelism")
             bias = None if (self.tp_rank > 0) else self.bias
+            ramon.log(f"--->bias is none: {bool(bias is None)}")
             if self.reduce_output:
                 fuse_bias = self._maybe_fuse_bias_into_allreduce(
                     bias, all_reduce_params)
