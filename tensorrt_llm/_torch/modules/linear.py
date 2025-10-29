@@ -2011,10 +2011,13 @@ class Linear(nn.Module):
                     all_reduce_params=all_reduce_params,
                 )
             else:
+                ramon.log(f"--->right before apply linear")
                 output = self.apply_linear(input, bias, lora_params, layer_idx)
         elif self.tp_mode == TensorParallelMode.COLUMN:
             ramon.log("--->Using column wise tensor parallelism")
+            ramon.log(f"--->right before apply linear")
             output = self.apply_linear(input, self.bias, lora_params, layer_idx)
+            ramon.log(f"--->gather output: {self.reduce_output}")
             if self.gather_output:
                 from ..distributed import allgather
                 output = allgather(output, self.mapping)
