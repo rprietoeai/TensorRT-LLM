@@ -796,6 +796,7 @@ class NVFP4LinearMethod(LinearMethodBase):
             act_fp4, act_sf = torch.ops.trtllm.fp4_quantize(
                 input, module.input_scale, module.scaling_vector_size, False)
             ramon.log(f"---|---|--->act_fp4 dtype: {act_fp4.dtype}")
+            ramon.log(f"---|---|--->act_fp4 shape: {act_fp4.shape}")
             ramon.log(f"---|---|--->act_sf dtype: {act_sf.dtype}")
 
 
