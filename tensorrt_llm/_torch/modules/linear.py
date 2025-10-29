@@ -796,7 +796,7 @@ class NVFP4LinearMethod(LinearMethodBase):
             act_fp4, act_sf = torch.ops.trtllm.fp4_quantize(
                 input, module.input_scale, module.scaling_vector_size, False)
             ramon.log(f"---|---|--->act_fp4 type: {type(act_fp4)}")
-            ramon.log(f"---|---|--->act_sf type: {type(act_fp4)}")
+            ramon.log(f"---|---|--->act_sf type: {type(act_sf)}")
 
 
         if IS_CUTLASS_DSL_AVAILABLE and module.use_cute_dsl_nvfp4_blockscaling_mm:
