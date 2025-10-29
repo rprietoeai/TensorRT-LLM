@@ -788,6 +788,7 @@ class NVFP4LinearMethod(LinearMethodBase):
             ramon.log("---|---|--->Input is FP4 quantized tensor")
             act_fp4, act_sf = input.fp4_tensor, input.scaling_factor
         elif isinstance(input, tuple):
+            ramon.log("---|---|--->Input is tuple")
             act_fp4, act_sf = input
         else:
             act_fp4, act_sf = torch.ops.trtllm.fp4_quantize(
