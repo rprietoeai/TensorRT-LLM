@@ -740,7 +740,7 @@ class LlamaDecoderLayer(DecoderLayer):
             else:
                 hidden_states, residual = all_reduce_output
         else:
-            ramon.log(f"Inside PreMLP Fusion condition")
+            ramon.log(f"We don't do pre mlp fusion")
             hidden_states, residual = self.post_attention_layernorm(
                 hidden_states, residual)
 
