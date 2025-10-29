@@ -157,9 +157,9 @@ class GatedMLP(nn.Module):
         ramon.log("input tensor shape to apply activation: {h1.shape}")
         ramon.log("before apply activation")
         h2 = self._apply_activation(h1)
+        ramon.log(f"down projection class: {type(self.down_proj)}")
         ramon.log("input tensor dtype to down projection: {h2.dtype}")
         ramon.log("input tensor shape to down projection: {h2.shape}")
-        ramon.log(f"down projection class: {type(self.down_proj)}")
         ramon.log("before down projection")
         output = self.down_proj(h2,
                                 all_reduce_params=final_all_reduce_params,
