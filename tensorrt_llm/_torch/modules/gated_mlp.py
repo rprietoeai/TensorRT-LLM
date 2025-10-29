@@ -15,6 +15,7 @@ from ..utils import Fp4QuantizedTensor
 from .linear import Linear, TensorParallelMode, WeightMode, WeightsLoadingConfig
 from .swiglu import swiglu
 
+from ...llmapi import ramon
 
 class GatedMLP(nn.Module):
 
@@ -142,9 +143,11 @@ class GatedMLP(nn.Module):
         **kwargs,
     ) -> torch.Tensor:
         if bool(lora_params):
+            ramon.log("we are doing lora")
             return self.forward_lora(x, all_rank_num_tokens,
                                      final_all_reduce_params, lora_params)
 
+        ramon.log("before gate up proj")
         h1 = self.gate_up_proj(x)
         h2 = self._apply_activation(h1)
         output = self.down_proj(h2,
