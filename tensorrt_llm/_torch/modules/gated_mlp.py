@@ -148,25 +148,25 @@ class GatedMLP(nn.Module):
                                      final_all_reduce_params, lora_params)
 
         ramon.log(f"gate up projection class: {type(self.gate_up_proj)}")
-        ramon.log("input tensor dtype to gate up proj: {x.dtype}")
-        ramon.log("input tensor shape to gate up proj: {x.shape}")
-        ramon.log("before gate up proj")
+        ramon.log(f"input tensor dtype to gate up proj: {x.dtype}")
+        ramon.log(f"input tensor shape to gate up proj: {x.shape}")
+        ramon.log(f"before gate up proj")
         h1 = self.gate_up_proj(x)
         ramon.log(f"apply activation projection class: {type(self._apply_activation)}")
-        ramon.log("input tensor dtype to apply activation: {h1.dtype}")
-        ramon.log("input tensor shape to apply activation: {h1.shape}")
-        ramon.log("before apply activation")
+        ramon.log(f"input tensor dtype to apply activation: {h1.dtype}")
+        ramon.log(f"input tensor shape to apply activation: {h1.shape}")
+        ramon.log(f"before apply activation")
         h2 = self._apply_activation(h1)
         ramon.log(f"down projection class: {type(self.down_proj)}")
-        ramon.log("input tensor dtype to down projection: {h2.dtype}")
-        ramon.log("input tensor shape to down projection: {h2.shape}")
-        ramon.log("before down projection")
+        ramon.log(f"input tensor dtype to down projection: {h2.dtype}")
+        ramon.log(f"input tensor shape to down projection: {h2.shape}")
+        ramon.log(f"before down projection")
         output = self.down_proj(h2,
                                 all_reduce_params=final_all_reduce_params,
                                 layer_idx=self.layer_idx)
-        ramon.log("output tensor dtype to down projection: {output.dtype}")
-        ramon.log("output tensor shape to down projection: {output.shape}")
-        ramon.log("before returning output")
+        ramon.log(f"output tensor dtype to down projection: {output.dtype}")
+        ramon.log(f"output tensor shape to down projection: {output.shape}")
+        ramon.log(f"before returning output")
         return output
 
     def forward_lora(
