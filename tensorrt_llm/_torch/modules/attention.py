@@ -573,6 +573,7 @@ class Attention(nn.Module):
                                         attention_sinks=attention_sinks)
 
         if self.attn_output_gate:
+            ramon.log("We have an output gate")
             gate = torch.sigmoid(gate)
             attn_output = attn_output * gate
 
