@@ -577,6 +577,7 @@ class Attention(nn.Module):
             gate = torch.sigmoid(gate)
             attn_output = attn_output * gate
 
+        ramon.log("Right before output projection")
         attn_output = self.o_proj(attn_output,
                                   all_reduce_params=all_reduce_params,
                                   lora_params=lora_params,
