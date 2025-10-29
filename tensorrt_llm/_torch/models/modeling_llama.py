@@ -754,6 +754,7 @@ class LlamaDecoderLayer(DecoderLayer):
                 self.POST_MLP_FUSION = False
                 self.disable_mlp_allreduce = self.mapping.tp_size == 1 or self.enable_attention_dp
 
+        ramon.log(f"mlp class: {type(self.mlp)}")
         ramon.log(f"right before self.mlp")
         hidden_states = self.mlp(
             hidden_states,
