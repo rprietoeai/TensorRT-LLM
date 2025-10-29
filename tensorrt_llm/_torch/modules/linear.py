@@ -803,7 +803,7 @@ class NVFP4LinearMethod(LinearMethodBase):
                 module.scalar_alpha, module.dtype)
         else:
             ramon.log("---|---|--->either cutlass is not available or we'll not use cute nvfp4mm")
-            ramon.log("---|---|--->Right before nvfp4 gemm")
+            ramon.log("---|---|--->Right before nvfp4 gemm (non cute)")
             output = torch.ops.trtllm.nvfp4_gemm(act_fp4, module.weight, act_sf,
                                                  module.weight_scale,
                                                  module.alpha, module.dtype)
