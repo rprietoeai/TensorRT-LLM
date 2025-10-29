@@ -815,6 +815,7 @@ class NVFP4LinearMethod(LinearMethodBase):
                                                  module.alpha, module.dtype)
 
         ramon.log(f"---|---|--->output dtype: {output.dtype}")
+        ramon.log(f"---|---|--->output shape: {output.shape}")
         ramon.log("---|---|--->returning output")
         if bias is not None:
             output = output + bias
