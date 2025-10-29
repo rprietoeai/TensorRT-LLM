@@ -1964,6 +1964,8 @@ class Linear(nn.Module):
         ramon.log("---|--->Inside Function")
         ramon.log("---|--->Right before quant method apply")
         ramon.log(f"---|--->quant method type: {str(type(self.quant_method))}")
+        ramon.log(f"---|--->input dtype: {str(input.dtype)}")
+        ramon.log(f"---|--->bias is None: {bias is None}")
         output = self.quant_method.apply(self, input, bias)
 
         ramon.log(f"---|--->self.lora is none: {self.lora is None}")
