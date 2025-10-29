@@ -582,6 +582,8 @@ class Attention(nn.Module):
                                   all_reduce_params=all_reduce_params,
                                   lora_params=lora_params,
                                   layer_idx=self.layer_idx)
+
+        ramon.log("Returning attention output")
         return attn_output
 
     def apply_rope(self, q: torch.Tensor, k: Optional[torch.Tensor],
