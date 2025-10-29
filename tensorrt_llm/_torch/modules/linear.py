@@ -801,6 +801,7 @@ class NVFP4LinearMethod(LinearMethodBase):
                 act_fp4, module.weight, act_sf, module.weight_scale,
                 module.scalar_alpha, module.dtype)
         else:
+            ramon.log("---|---|--->either cutlass is not available or we'll not use cute nvfp4mm")
             output = torch.ops.trtllm.nvfp4_gemm(act_fp4, module.weight, act_sf,
                                                  module.weight_scale,
                                                  module.alpha, module.dtype)
