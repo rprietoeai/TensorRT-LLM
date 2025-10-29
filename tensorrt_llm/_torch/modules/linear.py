@@ -819,8 +819,8 @@ class NVFP4LinearMethod(LinearMethodBase):
             ramon.log(f"---|---|--->modul weight shape: {module.weight.shape}")
             ramon.log(f"---|---|--->modul weight scale dtype: {module.weight_scale.dtype}")
             ramon.log(f"---|---|--->modul weight scale shape: {module.weight_scale.shape}")
-            ramon.log(f"---|---|--->modul alpha: {type(module.alpha.dtype)}")
-            ramon.log(f"---|---|--->modul shape: {type(module.alpha.shape)}")
+            ramon.log(f"---|---|--->modul alpha dtype: {module.alpha.dtype}")
+            ramon.log(f"---|---|--->modul shape shape: {module.alpha.shape}")
 
             ramon.log("---|---|--->Right before nvfp4 gemm (non cute)")
             output = torch.ops.trtllm.nvfp4_gemm(act_fp4, module.weight, act_sf,
