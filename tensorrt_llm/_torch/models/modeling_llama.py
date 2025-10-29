@@ -746,6 +746,7 @@ class LlamaDecoderLayer(DecoderLayer):
 
         # disable fusion for layers captured by spec_metadata
         if spec_metadata is not None:
+            ramon.log(f"spec metadata is not none")
             # how to know if is_layer_capture exists, if not do not call
             if hasattr(spec_metadata,
                        "is_layer_capture") and spec_metadata.is_layer_capture(
