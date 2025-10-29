@@ -149,12 +149,16 @@ class GatedMLP(nn.Module):
 
         ramon.log(f"gate up projection class: {type(self.gate_up_proj)}")
         ramon.log("input tensor dtype to gate up proj: {x.dtype}")
-        ramon.log("input tensor shape to gate up proj: {x.dtype}")
+        ramon.log("input tensor shape to gate up proj: {x.shape}")
         ramon.log("before gate up proj")
         h1 = self.gate_up_proj(x)
         ramon.log(f"apply activation projection class: {type(self._apply_activation)}")
+        ramon.log("input tensor dtype to apply activation: {h1.dtype}")
+        ramon.log("input tensor shape to apply activation: {h1.shape}")
         ramon.log("before apply activation")
         h2 = self._apply_activation(h1)
+        ramon.log("input tensor dtype to down projection: {h2.dtype}")
+        ramon.log("input tensor shape to down projection: {h2.shape}")
         ramon.log(f"down projection class: {type(self.down_proj)}")
         ramon.log("before down projection")
         output = self.down_proj(h2,
