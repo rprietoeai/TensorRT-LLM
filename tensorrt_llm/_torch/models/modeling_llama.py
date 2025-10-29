@@ -719,6 +719,7 @@ class LlamaDecoderLayer(DecoderLayer):
         )
         # Fully Connected
         if self.PRE_MLP_FUSION:
+            ramon.log(f"Inside PreMLP Fusion")
             if self.is_nvfp4 or self.is_fp8_quant:
                 scale = self.mlp.gate_up_proj.input_scale
             else:
