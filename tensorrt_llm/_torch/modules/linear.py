@@ -797,12 +797,13 @@ class NVFP4LinearMethod(LinearMethodBase):
 
         if IS_CUTLASS_DSL_AVAILABLE and module.use_cute_dsl_nvfp4_blockscaling_mm:
             ramon.log("---|---|--->cutlass is available and we can use cute nvfp4 mm")
-            ramon.log("---|---|--->Right before cute dsl nvfp4 gemm blackwell")
+            ramon.log("---|---|--->Right before cute dsl nvfp4 gemm for blackwell")
             output = torch.ops.trtllm.cute_dsl_nvfp4_gemm_blackwell(
                 act_fp4, module.weight, act_sf, module.weight_scale,
                 module.scalar_alpha, module.dtype)
         else:
             ramon.log("---|---|--->either cutlass is not available or we'll not use cute nvfp4mm")
+            ramon.log("---|---|--->Right before nvfp4 gemm")
             output = torch.ops.trtllm.nvfp4_gemm(act_fp4, module.weight, act_sf,
                                                  module.weight_scale,
                                                  module.alpha, module.dtype)
