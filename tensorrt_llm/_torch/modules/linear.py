@@ -2023,6 +2023,7 @@ class Linear(nn.Module):
                 output = allgather(output, self.mapping)
         else:
             ramon.log("--->Using no tensor parallelism")
+            ramon.log(f"--->right before apply linear")
             output = self.apply_linear(input, self.bias, lora_params, layer_idx)
 
         ramon.log("--->Returning output")
