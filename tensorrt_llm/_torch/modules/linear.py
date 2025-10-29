@@ -2017,7 +2017,7 @@ class Linear(nn.Module):
             ramon.log("--->Using column wise tensor parallelism")
             ramon.log(f"--->right before apply linear")
             output = self.apply_linear(input, self.bias, lora_params, layer_idx)
-            ramon.log(f"--->gather output: {self.reduce_output}")
+            ramon.log(f"--->gather output: {self.gather_output}")
             if self.gather_output:
                 from ..distributed import allgather
                 output = allgather(output, self.mapping)
