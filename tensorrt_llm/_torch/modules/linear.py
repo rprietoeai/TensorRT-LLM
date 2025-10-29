@@ -783,6 +783,7 @@ class NVFP4LinearMethod(LinearMethodBase):
 
     def apply(self, module: Linear, input: torch.Tensor,
               bias: Optional[torch.Tensor]):
+        ramon.log("---|---|--->Inside function")
         if isinstance(input, Fp4QuantizedTensor):
             act_fp4, act_sf = input.fp4_tensor, input.scaling_factor
         elif isinstance(input, tuple):
