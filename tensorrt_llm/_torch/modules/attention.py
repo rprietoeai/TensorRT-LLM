@@ -26,6 +26,7 @@ from .multi_stream_utils import maybe_execute_in_parallel
 from .rms_norm import RMSNorm
 from .rotary_embedding import MRotaryEmbedding, RotaryEmbedding
 
+from ...llmapi import ramon
 
 def extract_extra_attrs(layer_idx: str, attn_type: str):
     assert attn_type in ["mla", "attn"], "Invalid attention type"
@@ -522,6 +523,8 @@ class Attention(nn.Module):
         Returns:
             torch.Tensor: The output tensor.
         """
+
+        ramon.log("QKV projection:")
         qkv = self.qkv_proj(hidden_states)
 
         if bool(lora_params):
