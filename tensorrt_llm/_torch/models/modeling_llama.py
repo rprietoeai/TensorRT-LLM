@@ -813,6 +813,7 @@ class LlamaDecoderLayer(DecoderLayer):
             hidden_states, residual = self.next_layer_layernorm(
                 hidden_states, residual)
 
+        ramon.log(f"returning layer outputs")
         return hidden_states, residual
 
 
