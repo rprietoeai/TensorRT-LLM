@@ -381,6 +381,7 @@ class Attention(nn.Module):
         output_sf: Optional[torch.Tensor] = None,
         attention_sinks: Optional[torch.Tensor] = None,
     ):
+        ramon.log("entering function")
         num_tokens = attn_metadata.num_tokens
 
         q = q[:num_tokens, :]
