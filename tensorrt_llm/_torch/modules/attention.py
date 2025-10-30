@@ -571,7 +571,6 @@ class Attention(nn.Module):
         ramon.log(f"after rope: k shape: {k.shape}")
         ramon.log(f"after rope: v dtype: {v.dtype}")
         ramon.log(f"after rope: v shape: {v.shape}")
-        ramon.log("Right before converting qkv")
 
         if attention_sinks is not None:
             assert self.attn_backend == "TRTLLM", "Attention sinks are only supported for TRTLLM backend."
