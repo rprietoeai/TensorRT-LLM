@@ -558,10 +558,12 @@ class Attention(nn.Module):
         assert v is not None
         ramon.log(f"q: {q.dtype}")
         ramon.log(f"q: {q.shape}")
-        ramon.log(f"k: {k.dtype}")
-        ramon.log(f"k: {k.shape}")
-        ramon.log(f"v: {v.dtype}")
-        ramon.log(f"v: {v.shape}")
+        if k is not None:
+            ramon.log(f"k: {k.dtype}")
+            ramon.log(f"k: {k.shape}")
+        if v is not None:
+            ramon.log(f"v: {v.dtype}")
+            ramon.log(f"v: {v.shape}")
         ramon.log("Right before applying rope")
         q, k, v = self.apply_rope(q, k, v, position_ids)
         assert q is not None
@@ -569,14 +571,15 @@ class Attention(nn.Module):
         assert v is not None
         ramon.log(f"q: {q.dtype}")
         ramon.log(f"q: {q.shape}")
-        ramon.log(f"k: {k.dtype}")
-        ramon.log(f"k: {k.shape}")
-        ramon.log(f"v: {v.dtype}")
-        ramon.log(f"v: {v.shape}")
+        if k is not None:
+            ramon.log(f"k: {k.dtype}")
+            ramon.log(f"k: {k.shape}")
+        if v is not None:
+            ramon.log(f"v: {v.dtype}")
+            ramon.log(f"v: {v.shape}")
         ramon.log("Right before converting qkv")
         q, k, v = self.convert_qkv(q, k, v)
         assert q is not None
-        assert k is not None
         assert v is not None
         ramon.log(f"q: {q.dtype}")
         ramon.log(f"q: {q.shape}")
