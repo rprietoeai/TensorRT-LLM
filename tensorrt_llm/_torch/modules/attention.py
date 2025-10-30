@@ -587,6 +587,8 @@ class Attention(nn.Module):
                                         attention_mask_data,
                                         mrope_config=mrope_config,
                                         attention_sinks=attention_sinks)
+        ramon.log(f"attn_output: {attn_output.dtype}")
+        ramon.log(f"attn_output: {attn_output.shape}")
 
         if self.attn_output_gate:
             ramon.log("We have an output gate")
