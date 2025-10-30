@@ -565,6 +565,8 @@ class Attention(nn.Module):
         ramon.log(f"after rope: v shape: {v.shape}")
         ramon.log("Right before converting qkv")
         q, k, v = self.convert_qkv(q, k, v)
+        assert k is not None
+        assert v is not None
         ramon.log(f"after rope: q dtype: {q.dtype}")
         ramon.log(f"after rope: q shape: {q.shape}")
         ramon.log(f"after rope: k dtype: {k.dtype}")
