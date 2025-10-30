@@ -558,6 +558,12 @@ class Attention(nn.Module):
         assert q is not None
         assert k is not None
         assert v is not None
+        ramon.log(f"q: {q.dtype}")
+        ramon.log(f"q: {q.shape}")
+        ramon.log(f"k: {k.dtype}")
+        ramon.log(f"k: {k.shape}")
+        ramon.log(f"v: {v.dtype}")
+        ramon.log(f"v: {v.shape}")
         ramon.log("Right before converting qkv")
         q, k, v = self.convert_qkv(q, k, v)
 
