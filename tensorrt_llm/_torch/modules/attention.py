@@ -555,24 +555,8 @@ class Attention(nn.Module):
 
         ramon.log("Right before applying rope")
         q, k, v = self.apply_rope(q, k, v, position_ids)
-        assert k is not None
-        assert v is not None
-        ramon.log(f"after rope: q dtype: {q.dtype}")
-        ramon.log(f"after rope: q shape: {q.shape}")
-        ramon.log(f"after rope: k dtype: {k.dtype}")
-        ramon.log(f"after rope: k shape: {k.shape}")
-        ramon.log(f"after rope: v dtype: {v.dtype}")
-        ramon.log(f"after rope: v shape: {v.shape}")
         ramon.log("Right before converting qkv")
         q, k, v = self.convert_qkv(q, k, v)
-        assert k is not None
-        assert v is not None
-        ramon.log(f"after convert: q dtype: {q.dtype}")
-        ramon.log(f"after convert: q shape: {q.shape}")
-        ramon.log(f"after convert: k dtype: {k.dtype}")
-        ramon.log(f"after convert: k shape: {k.shape}")
-        ramon.log(f"after convert: v dtype: {v.dtype}")
-        ramon.log(f"after convert: v shape: {v.shape}")
 
         if attention_sinks is not None:
             assert self.attn_backend == "TRTLLM", "Attention sinks are only supported for TRTLLM backend."
@@ -587,9 +571,6 @@ class Attention(nn.Module):
                                         attention_mask_data,
                                         mrope_config=mrope_config,
                                         attention_sinks=attention_sinks)
-        ramon.log(f"attn_output type: {type(attn_output)}")
-        #ramon.log(f"attn_output: {attn_output.dtype}")
-        ramon.log(f"attn_output: {attn_output.shape}")
 
         if self.attn_output_gate:
             ramon.log("We have an output gate")
