@@ -567,12 +567,12 @@ class Attention(nn.Module):
         q, k, v = self.convert_qkv(q, k, v)
         assert k is not None
         assert v is not None
-        ramon.log(f"after rope: q dtype: {q.dtype}")
-        ramon.log(f"after rope: q shape: {q.shape}")
-        ramon.log(f"after rope: k dtype: {k.dtype}")
-        ramon.log(f"after rope: k shape: {k.shape}")
-        ramon.log(f"after rope: v dtype: {v.dtype}")
-        ramon.log(f"after rope: v shape: {v.shape}")
+        ramon.log(f"after convert: q dtype: {q.dtype}")
+        ramon.log(f"after convert: q shape: {q.shape}")
+        ramon.log(f"after convert: k dtype: {k.dtype}")
+        ramon.log(f"after convert: k shape: {k.shape}")
+        ramon.log(f"after convert: v dtype: {v.dtype}")
+        ramon.log(f"after convert: v shape: {v.shape}")
 
         if attention_sinks is not None:
             assert self.attn_backend == "TRTLLM", "Attention sinks are only supported for TRTLLM backend."
