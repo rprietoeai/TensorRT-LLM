@@ -555,6 +555,8 @@ class Attention(nn.Module):
 
         ramon.log("Right before applying rope")
         q, k, v = self.apply_rope(q, k, v, position_ids)
+        assert k is not None
+        assert v is not None
         ramon.log(f"after rope: q dtype: {q.dtype}")
         ramon.log(f"after rope: q shape: {q.shape}")
         ramon.log(f"after rope: k dtype: {k.dtype}")
