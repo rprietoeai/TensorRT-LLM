@@ -587,6 +587,7 @@ class Attention(nn.Module):
                                         attention_mask_data,
                                         mrope_config=mrope_config,
                                         attention_sinks=attention_sinks)
+        ramon.log(f"attn_output type: {type(attn_output)}")
         ramon.log(f"attn_output: {attn_output.dtype}")
         ramon.log(f"attn_output: {attn_output.shape}")
 
