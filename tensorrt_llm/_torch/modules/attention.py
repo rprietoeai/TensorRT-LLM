@@ -493,6 +493,7 @@ class Attention(nn.Module):
             if output_sf is not None:
                 output = Fp4QuantizedTensor(output, output_sf)
 
+        print(f"type of attention output: {type(output)}")
         return output
 
     def forward(
