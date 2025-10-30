@@ -447,6 +447,7 @@ class Attention(nn.Module):
         mrope_config: Optional[dict],
         attention_sinks: Optional[torch.Tensor] = None,
     ):
+        print("Entering function")
         mrope_rotary_cos_sin = None
         mrope_position_deltas = None
         if mrope_config is not None:
