@@ -555,6 +555,9 @@ class Attention(nn.Module):
 
         ramon.log("Right before applying rope")
         q, k, v = self.apply_rope(q, k, v, position_ids)
+        assert q is not None
+        assert k is not None
+        assert v is not None
         ramon.log("Right before converting qkv")
         q, k, v = self.convert_qkv(q, k, v)
 
