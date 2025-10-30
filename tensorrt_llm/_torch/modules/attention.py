@@ -463,6 +463,7 @@ class Attention(nn.Module):
                                  and is_torch_compiling())
 
         if use_custom_inplace_op:
+            ramon.log("use_custom_inplace_op is true")
             output = self.create_output(q)
             attn_custom_op_inplace(
                 q,
@@ -478,6 +479,7 @@ class Attention(nn.Module):
                 output,
             )
         else:
+            ramon.log("use_custom_inplace_op is false")
             output, output_sf = self._attn_impl(q,
                                                 k,
                                                 v,
