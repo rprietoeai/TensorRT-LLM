@@ -467,6 +467,8 @@ class TrtllmAttentionWrapper:
         ]
 
         ramon.log("---|--->right before running attention")
+        assert k is not None
+        assert v is not None
         ramon.log(f"---|--->k {k.dtype}")
         ramon.log(f"---|--->k {k.shape}")
         ramon.log(f"---|--->v {v.shape}")
