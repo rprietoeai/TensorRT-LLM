@@ -381,6 +381,7 @@ class TrtllmAttentionWrapper:
                     kv_hidden_size = self.num_kv_heads * self.head_size
                     assert k.shape[1] == kv_hidden_size
                     assert v.shape[1] == kv_hidden_size
+                    ramon.log(f"---|--->kv_hidden_size {kv_hidden_size}")
             num_tokens = q.shape[0]
             if k is not None:
                 assert k.shape[0] == num_tokens
