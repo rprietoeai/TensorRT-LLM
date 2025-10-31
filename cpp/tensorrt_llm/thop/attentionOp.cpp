@@ -571,6 +571,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     auto qkv_or_q = q;
     if (is_fused_qkv)
     {
+        RAMON_LOG("--|--|-->is fused qkv: " << is_fused_qkv);
         TLLM_CHECK_WITH_INFO(!k.has_value(), "The k tensor should be null if using fused QKV");
         TLLM_CHECK_WITH_INFO(!v.has_value(), "The v tensor should be null if using fused QKV");
     }
