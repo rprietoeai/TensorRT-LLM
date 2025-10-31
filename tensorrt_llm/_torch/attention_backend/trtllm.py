@@ -1251,6 +1251,7 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
             use_paged_context_fmha = False
 
         use_nvfp4_output = False
+        ramon.log(f"--->use_nvfp4_output: {use_nvfp4_output}")
         if enable_attn_nvfp4_output and self.has_nvfp4 and self.support_nvfp4_output(
         ):
             # Runtime check whether the NVFP4 output kernel is available.
