@@ -662,6 +662,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     RAMON_LOG("--|--|-->layer idx: " << op->mTokensPerBlock);
     op->mFP8GenerationMLA = false;
     op->mFuseFp4Quant = is_fp4_out;
+    RAMON_LOG("--|--|-->layer idx: " << op->mFuseFp4Quant);
     op->mMaxContextLength = max_context_length;
     op->mQScaling = q_scaling;
     op->mPositionEmbeddingType
