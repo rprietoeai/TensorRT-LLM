@@ -1247,6 +1247,7 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
 
         if self.is_mla_enable:
             # Context MLA uses separate qkv instead of paged_context_fmha
+            ramon.log("--->using mla")
             use_paged_context_fmha = False
 
         use_nvfp4_output = False
