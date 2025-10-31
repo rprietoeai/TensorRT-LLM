@@ -374,8 +374,10 @@ class TrtllmAttentionWrapper:
             else:
                 ramon.log("---|--->is not fused qkv")
                 q_hidden_size = self.num_heads * self.head_size
+                ramon.log(f"---|--->q hidden size: {q_hidden_size}")
                 assert q.shape[1] == q_hidden_size
                 if update_kv_cache:
+                    ramon.log(f"---|--->update kv cache is true")
                     kv_hidden_size = self.num_kv_heads * self.head_size
                     assert k.shape[1] == kv_hidden_size
                     assert v.shape[1] == kv_hidden_size
