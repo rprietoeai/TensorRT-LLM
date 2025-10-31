@@ -388,8 +388,8 @@ class TrtllmAttentionWrapper:
                 ramon.log(f"---|--->num_tokens {num_tokens}")
                 assert k.shape[0] == num_tokens
                 assert v.shape[0] == num_tokens
-            ramon.log(f"---|--->batch size: {batch_size}")
             batch_size = self.sequence_length.shape[0]
+            ramon.log(f"---|--->batch size: {batch_size}")
             assert self.host_past_key_value_lengths.shape[0] == batch_size
             assert self.context_lengths.shape[0] == batch_size
             assert self.host_context_lengths.shape[0] == batch_size
