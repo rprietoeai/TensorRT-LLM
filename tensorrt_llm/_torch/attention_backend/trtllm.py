@@ -369,7 +369,7 @@ class TrtllmAttentionWrapper:
                 ramon.log("---|--->is fused qkv")
                 qkv_hidden_size = (self.num_heads +
                                    2 * self.num_kv_heads) * self.head_size
-                ramon.log(f"---|--->hidden size: {qkv_hidden_size}")
+                ramon.log(f"---|--->qkv hidden size: {qkv_hidden_size}")
                 assert q.shape[1] == qkv_hidden_size
             else:
                 ramon.log("---|--->is not fused qkv")
