@@ -466,13 +466,15 @@ class TrtllmAttentionWrapper:
             self.sparse_attn_offsets,
         ]
 
-        ramon.log("---|--->right before running attention")
+        ramon.log(f"---|--->q {k.dtype}")
+        ramon.log(f"---|--->q {k.shape}")
         assert k is not None
         assert v is not None
         ramon.log(f"---|--->k {k.dtype}")
         ramon.log(f"---|--->k {k.shape}")
         ramon.log(f"---|--->v {v.shape}")
         ramon.log(f"---|--->v {v.shape}")
+        ramon.log("---|--->right before running thop attention")
         thop.attention(
             q,
             k,
