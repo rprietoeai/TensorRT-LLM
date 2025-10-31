@@ -590,6 +590,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     RunnerPtr runner;
     if (dtype == nvinfer1::DataType::kHALF)
     {
+        RAMON_LOG("--|--|-->dtype is half");
         if (is_fp8_out)
         {
             runner = std::make_shared<Runner<half, __nv_fp8_e4m3>>();
