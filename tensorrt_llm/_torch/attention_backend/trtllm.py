@@ -402,6 +402,7 @@ class TrtllmAttentionWrapper:
             else:
                 raise ValueError("Unexpected attention mask type")
         else:
+            ramon.log("---|--->Is mla enable")
             if self.attention_input_type == AttentionInputType.context_only:
                 assert not is_fused_qkv
                 qkv_hidden_size = self.num_heads * (self.qk_nope_head_dim +
