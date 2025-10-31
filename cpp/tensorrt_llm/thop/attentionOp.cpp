@@ -659,6 +659,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     RAMON_LOG("--|--|-->layer idx: " << op->use_kv_cache);
     op->mPagedKVCache = op->mPagedKVCache && use_kv_cache; // update mPagedKVCache based on use_kv_cache
     op->mTokensPerBlock = tokens_per_block.value_or(0);
+    RAMON_LOG("--|--|-->layer idx: " << op->mTokensPerBlock);
     op->mFP8GenerationMLA = false;
     op->mFuseFp4Quant = is_fp4_out;
     op->mMaxContextLength = max_context_length;
