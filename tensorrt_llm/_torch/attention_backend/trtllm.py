@@ -1354,6 +1354,7 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
             ramon.log("--->use nvfp4 output")
             ramon.log(f"--->output {output.dtype}")
             ramon.log(f"--->output {output.shape}")
+            assert type(output_sf) == torch.Tensor
             ramon.log(f"--->output {output_sf.dtype}")
             ramon.log(f"--->output {output_sf.shape}")
             return output, output_sf
