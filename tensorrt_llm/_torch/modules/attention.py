@@ -386,6 +386,8 @@ class Attention(nn.Module):
         ramon.log(f"num tokens: {num_tokens}")
 
         q = q[:num_tokens, :]
+        ramon.log(f"k is None: {k is None}")
+        ramon.log(f"v is None: {v is None}")
         if k is not None:
             k = k[:num_tokens, :]
         if v is not None:
