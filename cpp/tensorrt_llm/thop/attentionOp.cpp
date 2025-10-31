@@ -607,12 +607,14 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     }
     else if (dtype == nvinfer1::DataType::kFLOAT)
     {
+        RAMON_LOG("--|--|-->dtype is kfloat");
         TLLM_CHECK(!out_dtype.has_value() || out_dtype.value() == torch::kFloat32);
         runner = std::make_shared<Runner<float>>();
     }
 #ifdef ENABLE_BF16
     else if (dtype == nvinfer1::DataType::kBF16)
     {
+        RAMON_LOG("--|--|-->dtype is kbf16");
         if (is_fp8_out)
         {
             runner = std::make_shared<Runner<__nv_bfloat16, __nv_fp8_e4m3>>();
