@@ -432,7 +432,9 @@ class TrtllmAttentionWrapper:
                 raise ValueError("Unexpected attention mask type")
 
         if output is None:
+            ramon.log("---|--->output is none")
             assert output_sf is None
+            ramon.log("---|--->right beforre create aoutput")
             output, output_sf = self.create_output(q, out_dtype)
         else:
             # output is provided, expect output_sf be provided as well if has NVFP4 output.
