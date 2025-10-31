@@ -655,8 +655,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     RAMON_LOG("---|---|--->head size: " << op->mHeadSize);
     op->mMaskType = static_cast<tensorrt_llm::kernels::AttentionMaskType>(int32_t(mask_type));
     op->mKVCacheQuantMode = tensorrt_llm::common::QuantMode(uint32_t(quant_mode));
-    bool ramon_is_kv_nvfp4 = op->mKVCacheQuantMode == tensorrt_llm::common::QuantMode::nvfp4();
-    RAMON_LOG("---|---|--->is kv cache quant mode is nvfp4: " << ramon_is_kv_nvfp4);
+    RAMON_LOG("---|---|--->is kv cache quant mode has nvfp4: " << op->mKVCacheQuantMode.hasNvfp4());
     RAMON_LOG("---|---|--->op->mKVCacheQuantMode.value(): " << op->mKVCacheQuantMode.value());
     op->mUseKVCache = use_kv_cache;
     RAMON_LOG("---|---|--->use kv cache: " << op->mUseKVCache);
