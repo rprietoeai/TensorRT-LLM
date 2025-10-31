@@ -644,7 +644,9 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     auto op = std::make_shared<AttentionOp>();
     op->mType = dtype;
     op->mFMHAForceFP32Acc = dtype == nvinfer1::DataType::kBF16;
+    RAMON_LOG("--|--|-->force fp32 acc: " << op->mFMHAForceFP32Acc);
     op->mLayerIdx = layer_idx;
+    RAMON_LOG("--|--|-->layer idx: " << op->mLayerIdx);
     op->mNumHeads = num_heads;
     op->mNumKVHeads = num_kv_heads;
     op->mHeadSize = head_size;
