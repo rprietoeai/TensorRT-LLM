@@ -19,6 +19,7 @@ from .interface import (AttentionBackend, AttentionInputType, AttentionMask,
                         PositionalEmbeddingParams, PredefinedAttentionMask,
                         RopeParams)
 
+from ...llmapi import ramon
 
 @dataclass(kw_only=True, init=False)
 class TrtllmAttentionWrapper:
