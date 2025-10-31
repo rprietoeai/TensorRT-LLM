@@ -408,6 +408,7 @@ class Attention(nn.Module):
         kv_scales_sf_inv = None
         if self.quant_config is not None and self.quant_config.layer_quant_mode.has_fp4_kv_cache(
         ):
+            ramon.log("has fp4_kv_cache")
             kv_scales_sf = self.qkv_proj.kv_scales
             kv_scales_sf_inv = self.qkv_proj.inv_kv_scales
 
