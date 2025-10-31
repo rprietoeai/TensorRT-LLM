@@ -1337,6 +1337,7 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
                 # TODO(qijun): revisit fp8_context_fmha logic
                 out_dtype = torch.float8_e4m3fn
 
+        ramon.log("--->Right before wrapper run")
         output, output_sf = self.wrapper.run(
             q,
             k,
