@@ -443,6 +443,8 @@ class Attention(nn.Module):
                 attn_output
             ) == 2, "attn_output should be a tuple of (output, output_sf)"
             return attn_output[0], attn_output[1]
+        ramon.log(f"atn_output: {attn_output.dtype}")
+        ramon.log(f"atn_output: {attn_output.shape}")
         return attn_output, None
 
     def forward_impl(
