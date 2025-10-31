@@ -825,7 +825,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     {
         auto seq_offset = 0;
         auto token_offset = 0;
-        RAMON_LOG("--|--|-->right before runner->run");
+        RAMON_LOG("--|--|-->right before runner->run, case 0");
         runner->run(*op,
             /*is_context=*/true, seq_offset,
             /*num_seqs=*/num_contexts, token_offset,
@@ -843,6 +843,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
 
         auto seq_offset = num_contexts;
         auto token_offset = is_gen_only ? 0 : num_ctx_tokens;
+        RAMON_LOG("--|--|-->right before runner->run, case 1");
         runner->run(*op,
             /*is_context=*/false, seq_offset,
             /*num_seqs=*/num_generations, token_offset,
