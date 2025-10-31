@@ -547,9 +547,9 @@ class TrtllmAttentionWrapper:
         self.plan()
         ramon.log(f"---|--->output {output.dtype}")
         ramon.log(f"---|--->output {output.shape}")
-        assert output_sf is not None
-        ramon.log(f"---|--->output {output_sf.dtype}")
-        ramon.log(f"---|--->output {output_sf.shape}")
+        if output_sf is not None:
+            ramon.log(f"---|--->output {output_sf.dtype}")
+            ramon.log(f"---|--->output {output_sf.shape}")
         ramon.log(f"right before returning output")
         return output, output_sf
 
