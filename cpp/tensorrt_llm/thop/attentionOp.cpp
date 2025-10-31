@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <format>
 
 #define RAMON_LOG(msg) \
     std::cerr << "XXXXX::CC::" \
@@ -658,7 +657,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     op->mKVCacheQuantMode = tensorrt_llm::common::QuantMode(uint32_t(quant_mode));
     bool ramon_is_kv_nvfp4 = op->mKVCacheQuantMode == tensorrt_llm::common::QuantMode::nvfp4();
     RAMON_LOG("---|---|--->is kv cache quant mode is nvfp4: " << ramon_is_kv_nvfp4);
-    RAMON_LOG("---|---|--->op->mKVCacheQuantMode.value(): " << std::format("{:b}", op->mKVCacheQuantMode.value()));
+    RAMON_LOG("---|---|--->op->mKVCacheQuantMode.value(): " << op->mKVCacheQuantMode.value());
     op->mUseKVCache = use_kv_cache;
     RAMON_LOG("---|---|--->use kv cache: " << op->mUseKVCache);
     op->mPagedKVCache = op->mPagedKVCache && use_kv_cache; // update mPagedKVCache based on use_kv_cache
