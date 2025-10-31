@@ -437,6 +437,7 @@ class TrtllmAttentionWrapper:
             ramon.log("---|--->right beforre create aoutput")
             output, output_sf = self.create_output(q, out_dtype)
         else:
+            ramon.log("---|--->output is provided")
             # output is provided, expect output_sf be provided as well if has NVFP4 output.
             assert out_dtype is None or out_dtype != torch.uint8 or output_sf is not None
 
