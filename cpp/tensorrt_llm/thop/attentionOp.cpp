@@ -544,7 +544,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     std::vector<std::optional<torch::Tensor>> sparse_attention_params)
 {
     // Decompress sparse attention parameters
-    std::cerr << "Hello World from inside attentionOp.cpp" << std::endl;
+    std::cerr << "--|--|-->Hello World from inside attentionOp.cpp" << std::endl;
     TORCH_CHECK(sparse_attention_params.size() == 4, "Expected 4 sparse attention parameters");
     torch::optional<torch::Tensor> sparse_kv_indices = sparse_attention_params[0];
     torch::optional<torch::Tensor> sparse_kv_offsets = sparse_attention_params[1];
