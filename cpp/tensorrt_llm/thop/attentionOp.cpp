@@ -779,6 +779,8 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     int32_t const num_gen_tokens = is_gen_only ? num_tokens : num_tokens - num_ctx_tokens;
     auto const ctx_total_kv_len = host_total_kv_lens.index({0}).item<int32_t>();
     auto const gen_total_kv_len = host_total_kv_lens.index({1}).item<int32_t>();
+    RAMON_LOG("--|--|-->ctx_total_kv_len: " << ctx_total_kv_len);
+    RAMON_LOG("--|--|-->gen_total_kv_len: " << gen_total_kv_len);
 
     for (int32_t idx = num_contexts; idx < num_seqs; idx++)
     {
