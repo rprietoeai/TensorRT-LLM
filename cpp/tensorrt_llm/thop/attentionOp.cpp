@@ -648,6 +648,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     op->mLayerIdx = layer_idx;
     RAMON_LOG("--|--|-->layer idx: " << op->mLayerIdx);
     op->mNumHeads = num_heads;
+    RAMON_LOG("--|--|-->layer idx: " << op->mNumHeads);
     op->mNumKVHeads = num_kv_heads;
     op->mHeadSize = head_size;
     op->mMaskType = static_cast<tensorrt_llm::kernels::AttentionMaskType>(int32_t(mask_type));
