@@ -1271,6 +1271,7 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
             sparse_attn_indices, sparse_attn_offsets = self.sparse_attn_predict(
                 q, k, metadata)
 
+        ramon.log("--->Right before executing wrapper plan")
         self.wrapper.plan(
             layer_idx=self.get_local_layer_idx(metadata),
             tokens_per_block=metadata.tokens_per_block,
