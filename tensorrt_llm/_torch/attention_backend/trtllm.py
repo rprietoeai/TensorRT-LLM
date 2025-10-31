@@ -1232,6 +1232,7 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
         chunked_prefill_buffer_batch_size: int = 1,
         **kwargs,
     ) -> Union[torch.Tensor, Tuple[torch.Tensor, Optional[torch.Tensor]]]:
+        ramon.log("--->InsideFunction")
         assert isinstance(
             metadata,
             TrtllmAttentionMetadata,
