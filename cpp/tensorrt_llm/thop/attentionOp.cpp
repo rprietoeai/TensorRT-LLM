@@ -856,6 +856,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
             attention_sinks, sparse_kv_indices, sparse_kv_offsets, sparse_attn_indices, sparse_attn_offsets);
     }
 
+    RAMON_LOG("--|--|-->End of function");
     TLLM_LOG_TRACE("Attention op stops at layer %d", layer_idx);
 }
 
