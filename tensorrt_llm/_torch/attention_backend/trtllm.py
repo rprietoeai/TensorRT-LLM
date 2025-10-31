@@ -346,6 +346,7 @@ class TrtllmAttentionWrapper:
         Returns:
             torch.Tensor with shape (num_tokens, num_heads * head_dim).
         """
+        ramon.log(---|--->Inside function)
         if len(self.kwargs) > 0:
             logger.warning(
                 f"unknown arguments {list(self.kwargs.keys())} in attention wrapper"
