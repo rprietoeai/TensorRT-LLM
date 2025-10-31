@@ -1261,6 +1261,7 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
                 use_paged_context_fmha=use_paged_context_fmha,
                 is_mla_enable=self.is_mla_enable,
             )
+            ramon.log(f"--->use_nvfp4_output: {use_nvfp4_output}")
 
         sparse_kv_indices, sparse_kv_offsets, sparse_attn_indices, sparse_attn_offsets = None, None, None, None
         if self.sparse_attention_config is not None:
