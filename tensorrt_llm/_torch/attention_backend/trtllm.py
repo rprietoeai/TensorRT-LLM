@@ -352,6 +352,9 @@ class TrtllmAttentionWrapper:
         if k is not None:
             ramon.log("---|--->k:{k.dtype}")
             ramon.log("---|--->k:{k.shape}")
+        if v is not None:
+            ramon.log("---|--->v:{v.dtype}")
+            ramon.log("---|--->v:{v.shape}")
         if len(self.kwargs) > 0:
             logger.warning(
                 f"unknown arguments {list(self.kwargs.keys())} in attention wrapper"
