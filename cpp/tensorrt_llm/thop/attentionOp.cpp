@@ -664,6 +664,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     op->mFuseFp4Quant = is_fp4_out;
     RAMON_LOG("--|--|-->is fp4 out: " << op->mFuseFp4Quant);
     op->mMaxContextLength = max_context_length;
+    RAMON_LOG("--|--|-->max context length: " << op->mMaxContextLength);
     op->mQScaling = q_scaling;
     op->mPositionEmbeddingType
         = static_cast<tensorrt_llm::kernels::PositionEmbeddingType>(int8_t(position_embedding_type));
