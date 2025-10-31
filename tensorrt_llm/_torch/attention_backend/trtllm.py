@@ -384,6 +384,8 @@ class TrtllmAttentionWrapper:
                     ramon.log(f"---|--->kv_hidden_size {kv_hidden_size}")
             num_tokens = q.shape[0]
             if k is not None:
+                ramon.log(f"---|--->k is not none")
+                ramon.log(f"---|--->num_tokens {num_tokens}")
                 assert k.shape[0] == num_tokens
                 assert v.shape[0] == num_tokens
             batch_size = self.sequence_length.shape[0]
