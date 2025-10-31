@@ -454,7 +454,7 @@ class Attention(nn.Module):
         mrope_config: Optional[dict],
         attention_sinks: Optional[torch.Tensor] = None,
     ):
-        print("Entering function")
+        ramon.log("Entering function")
         mrope_rotary_cos_sin = None
         mrope_position_deltas = None
         if mrope_config is not None:
@@ -501,11 +501,11 @@ class Attention(nn.Module):
             if output_sf is not None:
                 output = Fp4QuantizedTensor(output, output_sf)
 
-        print(f"type of attention output: {type(output)}")
+        ramon.log(f"type of attention output: {type(output)}")
         assert type(output) == torch.Tensor
-        print(f"output: {output.dtype}")
-        print(f"output: {output.shape}")
-        print("returning output")
+        ramon.log(f"output: {output.dtype}")
+        ramon.log(f"output: {output.shape}")
+        ramon.log("returning output")
         return output
 
     def forward(
