@@ -347,14 +347,14 @@ class TrtllmAttentionWrapper:
             torch.Tensor with shape (num_tokens, num_heads * head_dim).
         """
         ramon.log("---|--->Inside function")
-        ramon.log("---|--->q:{q.dtype}")
-        ramon.log("---|--->q:{q.shape}")
+        ramon.log(f"---|--->q:{q.dtype}")
+        ramon.log(f"---|--->q:{q.shape}")
         if k is not None:
-            ramon.log("---|--->k:{k.dtype}")
-            ramon.log("---|--->k:{k.shape}")
+            ramon.log(f"---|--->k:{k.dtype}")
+            ramon.log(f"---|--->k:{k.shape}")
         if v is not None:
-            ramon.log("---|--->v:{v.dtype}")
-            ramon.log("---|--->v:{v.shape}")
+            ramon.log(f"---|--->v:{v.dtype}")
+            ramon.log(f"---|--->v:{v.shape}")
         if len(self.kwargs) > 0:
             logger.warning(
                 f"unknown arguments {list(self.kwargs.keys())} in attention wrapper"
@@ -364,7 +364,9 @@ class TrtllmAttentionWrapper:
                                    and v is not None)
 
         if not self.is_mla_enable:
+            ramon.log("---|--->not mla enable")
             if is_fused_qkv:
+                ramon.log("---|--->is fused qkv")
                 qkv_hidden_size = (self.num_heads +
                                    2 * self.num_kv_heads) * self.head_size
                 assert q.shape[1] == qkv_hidden_size
