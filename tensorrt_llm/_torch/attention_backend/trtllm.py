@@ -466,6 +466,11 @@ class TrtllmAttentionWrapper:
             self.sparse_attn_offsets,
         ]
 
+        ramon.log("---|--->right before running attention")
+        ramon.log(f"---|--->k {k.dtype}")
+        ramon.log(f"---|--->k {k.shape}")
+        ramon.log(f"---|--->v {v.shape}")
+        ramon.log(f"---|--->v {v.shape}")
         thop.attention(
             q,
             k,
