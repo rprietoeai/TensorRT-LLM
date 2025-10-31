@@ -1359,6 +1359,9 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
             ramon.log(f"--->output {output_sf.shape}")
             return output, output_sf
 
+        ramon.log("--->output is not nvfp4")
+        ramon.log(f"--->output {output.dtype}")
+        ramon.log(f"--->output {output.shape}")
         return output
 
     @classmethod
