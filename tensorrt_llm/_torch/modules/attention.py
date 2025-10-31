@@ -383,6 +383,7 @@ class Attention(nn.Module):
     ):
         ramon.log("entering function")
         num_tokens = attn_metadata.num_tokens
+        ramon.log(f"num tokens: {num_tokens}")
 
         q = q[:num_tokens, :]
         if k is not None:
