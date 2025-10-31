@@ -417,7 +417,7 @@ class Attention(nn.Module):
             if mrope_position_deltas is not None:
                 mrope_config["mrope_position_deltas"] = mrope_position_deltas
 
-        ramon.log(f"self.attn type: {self.attn}")
+        ramon.log(f"self.attn type: {type(self.attn)}")
         attn_output = self.attn.forward(
             q,
             k,
