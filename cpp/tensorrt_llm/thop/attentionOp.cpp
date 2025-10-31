@@ -584,6 +584,8 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     auto const dtype = tensorrt_llm::runtime::TorchUtils::dataType(qkv_or_q.scalar_type());
     bool const is_fp8_out = out_dtype.has_value() && out_dtype.value() == torch::kFloat8_e4m3fn;
     bool const is_fp4_out = out_dtype.has_value() && out_dtype.value() == torch::kUInt8;
+    RAMON_LOG("--|--|-->is_fp8_out: " << is_fp8_out);
+    RAMON_LOG("--|--|-->is_fp4_out: " << is_fp4_out);
 
     RunnerPtr runner;
     if (dtype == nvinfer1::DataType::kHALF)
