@@ -554,7 +554,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     std::vector<std::optional<torch::Tensor>> sparse_attention_params)
 {
     // Decompress sparse attention parameters
-    RAMON_LOG("--|--|-->Hello World from inside attentionOp.cpp");
+    RAMON_LOG("---|---|--->Hello World from inside attentionOp.cpp");
     TORCH_CHECK(sparse_attention_params.size() == 4, "Expected 4 sparse attention parameters");
     torch::optional<torch::Tensor> sparse_kv_indices = sparse_attention_params[0];
     torch::optional<torch::Tensor> sparse_kv_offsets = sparse_attention_params[1];
@@ -571,7 +571,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     auto qkv_or_q = q;
     if (is_fused_qkv)
     {
-        RAMON_LOG("--|--|-->is fused qkv: " << is_fused_qkv);
+        RAMON_LOG("---|---|--->is fused qkv: " << is_fused_qkv);
         TLLM_CHECK_WITH_INFO(!k.has_value(), "The k tensor should be null if using fused QKV");
         TLLM_CHECK_WITH_INFO(!v.has_value(), "The v tensor should be null if using fused QKV");
     }
@@ -584,13 +584,13 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     auto const dtype = tensorrt_llm::runtime::TorchUtils::dataType(qkv_or_q.scalar_type());
     bool const is_fp8_out = out_dtype.has_value() && out_dtype.value() == torch::kFloat8_e4m3fn;
     bool const is_fp4_out = out_dtype.has_value() && out_dtype.value() == torch::kUInt8;
-    RAMON_LOG("--|--|-->is_fp8_out: " << is_fp8_out);
-    RAMON_LOG("--|--|-->is_fp4_out: " << is_fp4_out);
+    RAMON_LOG("---|---|--->is_fp8_out: " << is_fp8_out);
+    RAMON_LOG("---|---|--->is_fp4_out: " << is_fp4_out);
 
     RunnerPtr runner;
     if (dtype == nvinfer1::DataType::kHALF)
     {
-        RAMON_LOG("--|--|-->dtype is half");
+        RAMON_LOG("---|---|--->dtype is half");
         if (is_fp8_out)
         {
             runner = std::make_shared<Runner<half, __nv_fp8_e4m3>>();
@@ -607,14 +607,14 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     }
     else if (dtype == nvinfer1::DataType::kFLOAT)
     {
-        RAMON_LOG("--|--|-->dtype is kfloat");
+        RAMON_LOG("---|---|--->dtype is kfloat");
         TLLM_CHECK(!out_dtype.has_value() || out_dtype.value() == torch::kFloat32);
         runner = std::make_shared<Runner<float>>();
     }
 #ifdef ENABLE_BF16
     else if (dtype == nvinfer1::DataType::kBF16)
     {
-        RAMON_LOG("--|--|-->dtype is kbf16");
+        RAMON_LOG("---|---|--->dtype is kbf16");
         if (is_fp8_out)
         {
             runner = std::make_shared<Runner<__nv_bfloat16, __nv_fp8_e4m3>>();
@@ -644,27 +644,28 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     auto op = std::make_shared<AttentionOp>();
     op->mType = dtype;
     op->mFMHAForceFP32Acc = dtype == nvinfer1::DataType::kBF16;
-    RAMON_LOG("--|--|-->force fp32 acc: " << op->mFMHAForceFP32Acc);
+    RAMON_LOG("---|---|--->force fp32 acc: " << op->mFMHAForceFP32Acc);
     op->mLayerIdx = layer_idx;
-    RAMON_LOG("--|--|-->layer idx: " << op->mLayerIdx);
+    RAMON_LOG("---|---|--->layer idx: " << op->mLayerIdx);
     op->mNumHeads = num_heads;
-    RAMON_LOG("--|--|-->num heads: " << op->mNumHeads);
+    RAMON_LOG("---|---|--->num heads: " << op->mNumHeads);
     op->mNumKVHeads = num_kv_heads;
-    RAMON_LOG("--|--|-->num kv heads: " << op->mNumKVHeads);
+    RAMON_LOG("---|---|--->num kv heads: " << op->mNumKVHeads);
     op->mHeadSize = head_size;
-    RAMON_LOG("--|--|-->head size: " << op->mHeadSize);
+    RAMON_LOG("---|---|--->head size: " << op->mHeadSize);
     op->mMaskType = static_cast<tensorrt_llm::kernels::AttentionMaskType>(int32_t(mask_type));
     op->mKVCacheQuantMode = tensorrt_llm::common::QuantMode(uint32_t(quant_mode));
+    RAMON_LOG("---|---|--->is kv cache quant mode is nvfp4: " << tensorrt_llm::common::QuantMode::nvfp4());
     op->mUseKVCache = use_kv_cache;
-    RAMON_LOG("--|--|-->use kv cache: " << op->mUseKVCache);
+    RAMON_LOG("---|---|--->use kv cache: " << op->mUseKVCache);
     op->mPagedKVCache = op->mPagedKVCache && use_kv_cache; // update mPagedKVCache based on use_kv_cache
     op->mTokensPerBlock = tokens_per_block.value_or(0);
-    RAMON_LOG("--|--|-->tokens per block: " << op->mTokensPerBlock);
+    RAMON_LOG("---|---|--->tokens per block: " << op->mTokensPerBlock);
     op->mFP8GenerationMLA = false;
     op->mFuseFp4Quant = is_fp4_out;
-    RAMON_LOG("--|--|-->is fp4 out: " << op->mFuseFp4Quant);
+    RAMON_LOG("---|---|--->is fp4 out: " << op->mFuseFp4Quant);
     op->mMaxContextLength = max_context_length;
-    RAMON_LOG("--|--|-->max context length: " << op->mMaxContextLength);
+    RAMON_LOG("---|---|--->max context length: " << op->mMaxContextLength);
     op->mQScaling = q_scaling;
     op->mPositionEmbeddingType
         = static_cast<tensorrt_llm::kernels::PositionEmbeddingType>(int8_t(position_embedding_type));
@@ -679,7 +680,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     op->mRotaryEmbeddingOriginalMaxPositions = rotary_embedding_original_max_positions;
     op->mFP8ContextFMHA = is_fp8_out || is_fp4_out || (op->mKVCacheQuantMode.hasFp8KvCache() && use_paged_context_fmha);
     op->mFP8AttenOutput = is_fp8_out;
-    RAMON_LOG("--|--|-->is fp8 out: " << op->mFP8AttenOutput);
+    RAMON_LOG("---|---|--->is fp8 out: " << op->mFP8AttenOutput);
     op->mPagedContextFMHA = use_paged_context_fmha;
 
     op->mAttentionChunkSize = attention_chunk_size;
@@ -779,8 +780,8 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     int32_t const num_gen_tokens = is_gen_only ? num_tokens : num_tokens - num_ctx_tokens;
     auto const ctx_total_kv_len = host_total_kv_lens.index({0}).item<int32_t>();
     auto const gen_total_kv_len = host_total_kv_lens.index({1}).item<int32_t>();
-    RAMON_LOG("--|--|-->ctx_total_kv_len: " << ctx_total_kv_len);
-    RAMON_LOG("--|--|-->gen_total_kv_len: " << gen_total_kv_len);
+    RAMON_LOG("---|---|--->ctx_total_kv_len: " << ctx_total_kv_len);
+    RAMON_LOG("---|---|--->gen_total_kv_len: " << gen_total_kv_len);
 
     for (int32_t idx = num_contexts; idx < num_seqs; idx++)
     {
@@ -825,7 +826,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     {
         auto seq_offset = 0;
         auto token_offset = 0;
-        RAMON_LOG("--|--|-->right before runner->run, case 0");
+        RAMON_LOG("---|---|--->right before runner->run, case 0");
         runner->run(*op,
             /*is_context=*/true, seq_offset,
             /*num_seqs=*/num_contexts, token_offset,
@@ -843,7 +844,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
 
         auto seq_offset = num_contexts;
         auto token_offset = is_gen_only ? 0 : num_ctx_tokens;
-        RAMON_LOG("--|--|-->right before runner->run, case 1");
+        RAMON_LOG("---|---|--->right before runner->run, case 1");
         runner->run(*op,
             /*is_context=*/false, seq_offset,
             /*num_seqs=*/num_generations, token_offset,
@@ -856,7 +857,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
             attention_sinks, sparse_kv_indices, sparse_kv_offsets, sparse_attn_indices, sparse_attn_offsets);
     }
 
-    RAMON_LOG("--|--|-->End of function");
+    RAMON_LOG("---|---|--->End of function");
     TLLM_LOG_TRACE("Attention op stops at layer %d", layer_idx);
 }
 
