@@ -1351,6 +1351,7 @@ class TrtllmAttention(AttentionBackend[TrtllmAttentionMetadata]):
             attention_mask=attention_mask)
 
         if use_nvfp4_output:
+            ramon.log("--->use nvfp4 output")
             return output, output_sf
 
         return output
