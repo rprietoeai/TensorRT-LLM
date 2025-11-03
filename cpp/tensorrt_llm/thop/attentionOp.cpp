@@ -295,6 +295,7 @@ public:
 
         // The cache element size in bits.
         int cache_elem_bits = op.getKvCacheElemSizeInBits<T>();
+        RAMON_LOG("cache eleme bits: " << cache_elem_bits);
         auto const block_size = op.mTokensPerBlock * op.mNumKVHeads * op.mHeadSize;
         auto const bytes_per_block = block_size * cache_elem_bits / 8 /*bits*/;
         int32_t const kv_factor = op.isMLAEnabled() ? 1 : 2;
