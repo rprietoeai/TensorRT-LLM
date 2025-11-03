@@ -2161,7 +2161,7 @@ template int AttentionOp::enqueueContext<__nv_bfloat16, KVBlockArray>(
 template <typename T, typename KVCacheBuffer>
 int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cudaStream_t stream)
 {
-    RAMON_LOG("---|---|---|---|--->op.enqueueGeneration");
+    RAMON_LOG("---|---|---|---|--->Beginning of function");
     int const headSize = getHeadSize();
     float const q_scaling = mQScaling;
     float const* logn_scaling_ptr = isLognScaling() ? params.logn_scaling_ptr : nullptr;
