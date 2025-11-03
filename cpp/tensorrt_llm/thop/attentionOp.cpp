@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+/*
 #define RAMON_LOG(msg) \
     std::cout << "XXXXX::CC::" \
               << "::" \
@@ -24,6 +25,8 @@
               << "::" \
               << msg \
               << std::endl;
+              */
+# define RAMON_LOG(msg)
 
 #include "tensorrt_llm/common/attentionOp.h"
 #include "tensorrt_llm/common/dataType.h"
