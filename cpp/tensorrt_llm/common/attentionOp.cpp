@@ -2458,6 +2458,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
     {
         // self attn
         Masked_multihead_attention_params<DataType> mmha_params;
+        RAMON_LOG("---|---|---|---|--->fused qkv masked attention dispatch");
         fusedQKV_masked_attention_dispatch(mmha_params, dispatch_params, stream);
     }
     else
