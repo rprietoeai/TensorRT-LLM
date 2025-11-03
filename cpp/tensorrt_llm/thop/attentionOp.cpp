@@ -315,6 +315,7 @@ public:
         bool const use_nvfp4_kv_cache = use_kv_cache && op.mKVCacheQuantMode.hasFp4KvCache();
         if (use_nvfp4_kv_cache)
         {
+            RAMON_LOG("We are using an nvfp4 kv cache");
             // For NVFP4 KV cache, extra block scales are stored in separate pools.
             // The layout of host_kv_cache_pool_pointers is [num_pools, 2 (primary and secondary), 2 (data and scale)].
             TORCH_CHECK(host_kv_cache_pool_pointers.value().dim() == 3);
