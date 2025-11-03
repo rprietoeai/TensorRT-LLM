@@ -2210,6 +2210,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
                 reinterpret_cast<BufferDataType*>(params.block_offsets));
             if (mKVCacheQuantMode.hasFp4KvCache())
             {
+                RAMON_LOG("---|---|---|---|--->kv cache buffer has fp4 kv cache");
                 kv_scale_cache_buffer = KVBlockArray(batch_beam, params.max_blocks_per_sequence, mTokensPerBlock,
                     sizePerToken / 8, params.cyclic_attention_window_size, params.max_cyclic_attention_window_size,
                     params.sink_token_length, params.can_use_one_more_block,
