@@ -263,6 +263,7 @@ public:
         int32_t const max_past_kv_length
             = host_past_key_value_lengths.slice(0, seq_offset, seq_offset + num_seqs).max().item<int32_t>();
         RAMON_LOG("max context q len: " << max_context_q_len);
+        RAMON_LOG("max past kv len: " << max_pat_kv_length);
 
         // Commonly, cyclic_attention_window_size, and max_attention_window_size will be the same
         // unless each layer has different attention window sizes.
