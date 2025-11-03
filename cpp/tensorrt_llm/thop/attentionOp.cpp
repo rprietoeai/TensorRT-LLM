@@ -251,6 +251,7 @@ public:
         }
         else
         {
+            RAMON_LOG("It is not a context.");
             op.mRuntimeSparseAttentionParams.sparse_attn_indices
                 = sparse_attn_indices.has_value() ? sparse_attn_indices.value().data_ptr<int32_t>() : nullptr;
             op.mRuntimeSparseAttentionParams.sparse_attn_offsets
