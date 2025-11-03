@@ -522,7 +522,7 @@ public:
             }
         }
         sync_check_cuda_error(stream);
-    RAMON_LOG("--|--|--|-->End of function.");
+        RAMON_LOG("--|--|--|-->End of function.");
     }
 };
 
