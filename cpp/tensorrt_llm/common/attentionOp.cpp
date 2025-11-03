@@ -2174,6 +2174,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
 {
     RAMON_LOG("---|---|---|---|--->Beginning of function");
     int const headSize = getHeadSize();
+    RAMON_LOG("---|---|---|---|--->head size: " << headSize);
     float const q_scaling = mQScaling;
     float const* logn_scaling_ptr = isLognScaling() ? params.logn_scaling_ptr : nullptr;
     T const* relative_attention_bias = isRelativePosition() ? params.relative_attention_bias : nullptr;
