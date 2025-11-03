@@ -2199,6 +2199,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
 
     if (useKVCache())
     {
+        RAMON_LOG("---|---|---|---|--->we are using kv cache");
         if constexpr (std::is_same_v<KVCacheBuffer, KVBlockArray>)
         {
             using BufferDataType = typename KVCacheBuffer::DataType;
