@@ -2465,12 +2465,14 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
     {
         // cross attn
         Cross_multihead_attention_params<DataType> mmhca_params;
+        RAMON_LOG("---|---|---|---|--->fused qkv masked attention dispatch");
         fusedQKV_masked_attention_dispatch(mmhca_params, dispatch_params, stream);
     }
     sync_check_cuda_error(stream);
 
     if (mCpSize > 1 && mAttnTpSize > 1 && mAttnCpSize == 1)
     {
+        RAMON_LOG("---|---|---|---|--->ulysses generation postprocess");
         this->template ulyssesGenerationPostprocess<T>(
             mhaOutput, reinterpret_cast<T*>(params.context_buf), mhaInput, batch_beam, stream);
         sync_check_cuda_error(stream);
