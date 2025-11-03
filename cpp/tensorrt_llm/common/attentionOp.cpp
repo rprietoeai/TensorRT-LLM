@@ -2307,6 +2307,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
                     mhaOutput, reinterpret_cast<T*>(params.context_buf), mhaInput, batch_beam, stream);
                 sync_check_cuda_error(stream);
             }
+            RAMON_LOG("---|---|---|---|--->returning from function");
             return 0;
         }
         else if (mIsSpecDecodingEnabled && mUseSpecDecoding)
