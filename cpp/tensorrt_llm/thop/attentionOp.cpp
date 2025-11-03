@@ -299,7 +299,7 @@ public:
         auto const block_size = op.mTokensPerBlock * op.mNumKVHeads * op.mHeadSize;
         RAMON_LOG("block size: " << block_size);
         auto const bytes_per_block = block_size * cache_elem_bits / 8 /*bits*/;
-        RAMON_LOG("bytes per blocksize: " << bytes per block);
+        RAMON_LOG("bytes per blocksize: " << bytes_per_block);
         int32_t const kv_factor = op.isMLAEnabled() ? 1 : 2;
         auto const intra_pool_offset = layer_idx_in_cache_pool * kv_factor * bytes_per_block;
 
