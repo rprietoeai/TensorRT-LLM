@@ -315,7 +315,7 @@ public:
         bool const use_nvfp4_kv_cache = use_kv_cache && op.mKVCacheQuantMode.hasFp4KvCache();
         if (use_nvfp4_kv_cache)
         {
-            RAMON_LOG("We are using an nvfp4 kv cache");
+            RAMON_LOG("--|--|--|-->We are using an nvfp4 kv cache");
             // For NVFP4 KV cache, extra block scales are stored in separate pools.
             // The layout of host_kv_cache_pool_pointers is [num_pools, 2 (primary and secondary), 2 (data and scale)].
             TORCH_CHECK(host_kv_cache_pool_pointers.value().dim() == 3);
@@ -339,7 +339,7 @@ public:
         }
         else if (use_kv_cache)
         {
-            RAMON_LOG("we are not using an nvfp4 kv cache");
+            RAMON_LOG("--|--|--|-->we are not using an nvfp4 kv cache");
             TORCH_CHECK(host_kv_cache_pool_pointers.value().dim() == 2);
             host_primary_pool_pointer = reinterpret_cast<void*>(
                 reinterpret_cast<char*>(host_kv_cache_pool_pointers.value().index({pool_index, 0}).item<int64_t>())
@@ -408,6 +408,7 @@ public:
         common_enqueue_params.context_lengths = context_lengths_ptr;
         common_enqueue_params.host_context_lengths = host_context_lengths.data_ptr<int32_t>();
         common_enqueue_params.workspace = workspace_ptr;
+        RAMON_LOG("--|--|--|-->num tokens: " << num_tokens);
         if (softmax_stats_tensor.has_value())
         {
             TLLM_CHECK_WITH_INFO(softmax_stats_tensor.value().scalar_type() == at::ScalarType::Float,
