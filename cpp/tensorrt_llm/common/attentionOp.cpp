@@ -2202,6 +2202,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
         RAMON_LOG("---|---|---|---|--->we are using kv cache");
         if constexpr (std::is_same_v<KVCacheBuffer, KVBlockArray>)
         {
+            RAMON_LOG("---|---|---|---|--->kv cache buffer is the same as kv block array");
             using BufferDataType = typename KVCacheBuffer::DataType;
             kv_cache_buffer = KVBlockArray(batch_beam, params.max_blocks_per_sequence, mTokensPerBlock, sizePerToken,
                 params.cyclic_attention_window_size, params.max_cyclic_attention_window_size, params.sink_token_length,
