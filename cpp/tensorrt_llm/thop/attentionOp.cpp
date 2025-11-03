@@ -16,7 +16,7 @@
  */
 
 #define RAMON_LOG(msg) \
-    std::cout << "XXXXX::CC::" \
+    std::cerr << "XXXXX::CC::" \
               << "::" \
               << __LINE__ \
               << "::" \
