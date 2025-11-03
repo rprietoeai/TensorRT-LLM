@@ -339,6 +339,7 @@ public:
         }
         else if (use_kv_cache)
         {
+            RAMON_LOG("we are not using an nvfp4 kv cache");
             TORCH_CHECK(host_kv_cache_pool_pointers.value().dim() == 2);
             host_primary_pool_pointer = reinterpret_cast<void*>(
                 reinterpret_cast<char*>(host_kv_cache_pool_pointers.value().index({pool_index, 0}).item<int64_t>())
