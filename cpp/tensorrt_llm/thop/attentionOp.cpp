@@ -243,6 +243,7 @@ public:
         // Prepare sparse attention parameters
         if (is_context)
         {
+            RAMON_LOG("It is a context.");
             op.mRuntimeSparseAttentionParams.sparse_kv_indices
                 = sparse_kv_indices.has_value() ? sparse_kv_indices.value().data_ptr<int32_t>() : nullptr;
             op.mRuntimeSparseAttentionParams.sparse_kv_offsets
