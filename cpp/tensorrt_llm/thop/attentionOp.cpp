@@ -240,7 +240,7 @@ public:
         // Prepare sparse attention parameters
         if (is_context)
         {
-            RAMON_LOG("It is a context.");
+            RAMON_LOG("--|--|--|-->It is a context.");
             op.mRuntimeSparseAttentionParams.sparse_kv_indices
                 = sparse_kv_indices.has_value() ? sparse_kv_indices.value().data_ptr<int32_t>() : nullptr;
             op.mRuntimeSparseAttentionParams.sparse_kv_offsets
@@ -248,7 +248,7 @@ public:
         }
         else
         {
-            RAMON_LOG("It is not a context.");
+            RAMON_LOG("--|--|--|-->It is not a context.");
             op.mRuntimeSparseAttentionParams.sparse_attn_indices
                 = sparse_attn_indices.has_value() ? sparse_attn_indices.value().data_ptr<int32_t>() : nullptr;
             op.mRuntimeSparseAttentionParams.sparse_attn_offsets
@@ -262,8 +262,8 @@ public:
             = host_context_lengths.slice(0, seq_offset, seq_offset + num_seqs).max().item<int32_t>();
         int32_t const max_past_kv_length
             = host_past_key_value_lengths.slice(0, seq_offset, seq_offset + num_seqs).max().item<int32_t>();
-        RAMON_LOG("max context q len: " << max_context_q_len);
-        RAMON_LOG("max past kv len: " << max_past_kv_length);
+        RAMON_LOG("--|--|--|-->max context q len: " << max_context_q_len);
+        RAMON_LOG("--|--|--|-->max past kv len: " << max_past_kv_length);
 
         // Commonly, cyclic_attention_window_size, and max_attention_window_size will be the same
         // unless each layer has different attention window sizes.
@@ -295,14 +295,14 @@ public:
 
         // The cache element size in bits.
         int cache_elem_bits = op.getKvCacheElemSizeInBits<T>();
-        RAMON_LOG("cache eleme bits: " << cache_elem_bits);
+        RAMON_LOG("--|--|--|-->cache eleme bits: " << cache_elem_bits);
         auto const block_size = op.mTokensPerBlock * op.mNumKVHeads * op.mHeadSize;
-        RAMON_LOG("block size: " << block_size);
+        RAMON_LOG("--|--|--|-->block size: " << block_size);
         auto const bytes_per_block = block_size * cache_elem_bits / 8 /*bits*/;
-        RAMON_LOG("bytes per blocksize: " << bytes_per_block);
+        RAMON_LOG("--|--|--|-->bytes per blocksize: " << bytes_per_block);
         int32_t const kv_factor = op.isMLAEnabled() ? 1 : 2;
         auto const intra_pool_offset = layer_idx_in_cache_pool * kv_factor * bytes_per_block;
-        RAMON_LOG("kv factor: " << kv_factor);
+        RAMON_LOG("--|--|--|-->kv factor: " << kv_factor);
 
         // Prepare block pool pointers for NVFP4 KV cache.
         void* host_primary_pool_pointer{nullptr};
