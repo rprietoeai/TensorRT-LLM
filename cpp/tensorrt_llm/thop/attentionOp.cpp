@@ -424,6 +424,7 @@ public:
 
         if (is_context) // context stage
         {
+            RAMON_LOG("--|--|--|-->is context stage");
             common_enqueue_params.input_seq_length = max_context_q_len;
             AttentionOp::EnqueueContextParams<T> enqueue_params{common_enqueue_params};
             enqueue_params.host_block_offsets = host_block_offsets;
@@ -442,10 +443,12 @@ public:
                 enqueue_params.mrope_rotary_cos_sin
                     = static_cast<float2 const*>(mrope_rotary_cos_sin.value().data_ptr());
             }
+            RAMON_LOG("--|--|--|-->Right before op.enqueueContext");
             op.enqueueContext<T, KVBlockArray>(enqueue_params, stream);
         }
         else // generation stage
         {
+            RAMON_LOG("--|--|--|-->is generation stage");
             int32_t const batch_beam = num_seqs;
             TLLM_CHECK(batch_beam % beam_width == 0);
             int32_t const num_requests = batch_beam / beam_width;
@@ -504,6 +507,7 @@ public:
             }
             else
             {
+                RAMON_LOG("--|--|--|-->op.enqueueGeneration");
                 op.enqueueGeneration<T, KVBlockArray>(enqueue_params, stream);
             }
 
