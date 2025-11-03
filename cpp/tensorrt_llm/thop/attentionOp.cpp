@@ -23,7 +23,7 @@
               << __FUNCTION__ \
               << "::" \
               << msg \
-              << std::endl;
+              << "\n";
 
 #include "tensorrt_llm/common/attentionOp.h"
 #include "tensorrt_llm/common/dataType.h"
