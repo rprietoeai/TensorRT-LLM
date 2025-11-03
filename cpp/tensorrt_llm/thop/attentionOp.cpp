@@ -240,7 +240,7 @@ public:
         // Prepare sparse attention parameters
         if (is_context)
         {
-            RAMON_LOG("--|--|--|-->It is a context.");
+            RAMON_LOG("---|---|---|--->It is a context.");
             op.mRuntimeSparseAttentionParams.sparse_kv_indices
                 = sparse_kv_indices.has_value() ? sparse_kv_indices.value().data_ptr<int32_t>() : nullptr;
             op.mRuntimeSparseAttentionParams.sparse_kv_offsets
@@ -248,7 +248,7 @@ public:
         }
         else
         {
-            RAMON_LOG("--|--|--|-->It is not a context.");
+            RAMON_LOG("---|---|---|--->It is not a context.");
             op.mRuntimeSparseAttentionParams.sparse_attn_indices
                 = sparse_attn_indices.has_value() ? sparse_attn_indices.value().data_ptr<int32_t>() : nullptr;
             op.mRuntimeSparseAttentionParams.sparse_attn_offsets
@@ -262,8 +262,8 @@ public:
             = host_context_lengths.slice(0, seq_offset, seq_offset + num_seqs).max().item<int32_t>();
         int32_t const max_past_kv_length
             = host_past_key_value_lengths.slice(0, seq_offset, seq_offset + num_seqs).max().item<int32_t>();
-        RAMON_LOG("--|--|--|-->max context q len: " << max_context_q_len);
-        RAMON_LOG("--|--|--|-->max past kv len: " << max_past_kv_length);
+        RAMON_LOG("---|---|---|--->max context q len: " << max_context_q_len);
+        RAMON_LOG("---|---|---|--->max past kv len: " << max_past_kv_length);
 
         // Commonly, cyclic_attention_window_size, and max_attention_window_size will be the same
         // unless each layer has different attention window sizes.
@@ -295,14 +295,14 @@ public:
 
         // The cache element size in bits.
         int cache_elem_bits = op.getKvCacheElemSizeInBits<T>();
-        RAMON_LOG("--|--|--|-->cache eleme bits: " << cache_elem_bits);
+        RAMON_LOG("---|---|---|--->cache eleme bits: " << cache_elem_bits);
         auto const block_size = op.mTokensPerBlock * op.mNumKVHeads * op.mHeadSize;
-        RAMON_LOG("--|--|--|-->block size: " << block_size);
+        RAMON_LOG("---|---|---|--->block size: " << block_size);
         auto const bytes_per_block = block_size * cache_elem_bits / 8 /*bits*/;
-        RAMON_LOG("--|--|--|-->bytes per blocksize: " << bytes_per_block);
+        RAMON_LOG("---|---|---|--->bytes per blocksize: " << bytes_per_block);
         int32_t const kv_factor = op.isMLAEnabled() ? 1 : 2;
         auto const intra_pool_offset = layer_idx_in_cache_pool * kv_factor * bytes_per_block;
-        RAMON_LOG("--|--|--|-->kv factor: " << kv_factor);
+        RAMON_LOG("---|---|---|--->kv factor: " << kv_factor);
 
         // Prepare block pool pointers for NVFP4 KV cache.
         void* host_primary_pool_pointer{nullptr};
@@ -315,7 +315,7 @@ public:
         bool const use_nvfp4_kv_cache = use_kv_cache && op.mKVCacheQuantMode.hasFp4KvCache();
         if (use_nvfp4_kv_cache)
         {
-            RAMON_LOG("--|--|--|-->We are using an nvfp4 kv cache");
+            RAMON_LOG("---|---|---|--->We are using an nvfp4 kv cache");
             // For NVFP4 KV cache, extra block scales are stored in separate pools.
             // The layout of host_kv_cache_pool_pointers is [num_pools, 2 (primary and secondary), 2 (data and scale)].
             TORCH_CHECK(host_kv_cache_pool_pointers.value().dim() == 3);
@@ -339,7 +339,7 @@ public:
         }
         else if (use_kv_cache)
         {
-            RAMON_LOG("--|--|--|-->we are not using an nvfp4 kv cache");
+            RAMON_LOG("---|---|---|--->we are not using an nvfp4 kv cache");
             TORCH_CHECK(host_kv_cache_pool_pointers.value().dim() == 2);
             host_primary_pool_pointer = reinterpret_cast<void*>(
                 reinterpret_cast<char*>(host_kv_cache_pool_pointers.value().index({pool_index, 0}).item<int64_t>())
@@ -408,7 +408,7 @@ public:
         common_enqueue_params.context_lengths = context_lengths_ptr;
         common_enqueue_params.host_context_lengths = host_context_lengths.data_ptr<int32_t>();
         common_enqueue_params.workspace = workspace_ptr;
-        RAMON_LOG("--|--|--|-->num tokens: " << num_tokens);
+        RAMON_LOG("---|---|---|--->num tokens: " << num_tokens);
         if (softmax_stats_tensor.has_value())
         {
             TLLM_CHECK_WITH_INFO(softmax_stats_tensor.value().scalar_type() == at::ScalarType::Float,
@@ -424,7 +424,7 @@ public:
 
         if (is_context) // context stage
         {
-            RAMON_LOG("--|--|--|-->is context stage");
+            RAMON_LOG("---|---|---|--->is context stage");
             common_enqueue_params.input_seq_length = max_context_q_len;
             AttentionOp::EnqueueContextParams<T> enqueue_params{common_enqueue_params};
             enqueue_params.host_block_offsets = host_block_offsets;
@@ -443,12 +443,12 @@ public:
                 enqueue_params.mrope_rotary_cos_sin
                     = static_cast<float2 const*>(mrope_rotary_cos_sin.value().data_ptr());
             }
-            RAMON_LOG("--|--|--|-->Right before op.enqueueContext");
+            RAMON_LOG("---|---|---|--->Right before op.enqueueContext");
             op.enqueueContext<T, KVBlockArray>(enqueue_params, stream);
         }
         else // generation stage
         {
-            RAMON_LOG("--|--|--|-->is generation stage");
+            RAMON_LOG("---|---|---|--->is generation stage");
             int32_t const batch_beam = num_seqs;
             TLLM_CHECK(batch_beam % beam_width == 0);
             int32_t const num_requests = batch_beam / beam_width;
@@ -507,7 +507,7 @@ public:
             }
             else
             {
-                RAMON_LOG("--|--|--|-->op.enqueueGeneration");
+                RAMON_LOG("---|---|---|--->op.enqueueGeneration");
                 op.enqueueGeneration<T, KVBlockArray>(enqueue_params, stream);
             }
 
@@ -522,7 +522,7 @@ public:
             }
         }
         sync_check_cuda_error(stream);
-        RAMON_LOG("--|--|--|-->End of function.");
+        RAMON_LOG("---|---|---|--->End of function.");
     }
 };
 
