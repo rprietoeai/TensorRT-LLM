@@ -2302,6 +2302,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
             mXqaDispatcher->run(xqaParams, kv_cache_buffer, kv_scale_cache_buffer);
             if (mCpSize > 1 && mAttnTpSize > 1 && mAttnCpSize == 1)
             {
+                RAMON_LOG("---|---|---|---|--->ulysses generation post process");
                 this->template ulyssesGenerationPostprocess<T>(
                     mhaOutput, reinterpret_cast<T*>(params.context_buf), mhaInput, batch_beam, stream);
                 sync_check_cuda_error(stream);
