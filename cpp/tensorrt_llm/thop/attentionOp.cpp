@@ -523,6 +523,7 @@ public:
         }
         sync_check_cuda_error(stream);
     }
+    RAMON_LOG("--|--|--|-->End of function.");
 };
 
 template class Runner<float>;
