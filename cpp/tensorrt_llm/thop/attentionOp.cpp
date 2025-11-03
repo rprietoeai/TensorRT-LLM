@@ -302,6 +302,7 @@ public:
         RAMON_LOG("bytes per blocksize: " << bytes_per_block);
         int32_t const kv_factor = op.isMLAEnabled() ? 1 : 2;
         auto const intra_pool_offset = layer_idx_in_cache_pool * kv_factor * bytes_per_block;
+        RAMON_LOG("kv factor: " << kv_factor);
 
         // Prepare block pool pointers for NVFP4 KV cache.
         void* host_primary_pool_pointer{nullptr};
