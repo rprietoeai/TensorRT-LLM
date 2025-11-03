@@ -33,6 +33,17 @@
 #include <cstdint>
 #include <type_traits>
 
+#define RAMON_LOG(msg) \
+    std::cerr << "XXXXX::CC::" \
+              << "::" \
+              << __LINE__ \
+              << "::" \
+              << __FUNCTION__ \
+              << "::" \
+              << msg \
+              << "\n";
+
+
 using namespace tensorrt_llm::kernels;
 namespace tc = tensorrt_llm::common;
 using tensorrt_llm::common::op::AttentionOp;
