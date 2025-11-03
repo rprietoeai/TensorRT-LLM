@@ -2277,6 +2277,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
     T* attention_input = const_cast<T*>(params.attention_input);
     if (mCpSize > 1 && mAttnTpSize > 1 && mAttnCpSize == 1)
     {
+        RAMON_LOG("---|---|---|---|--->ulysses generation preprocess");
         this->template ulyssesGenerationPreprocess<T>(attention_input, mhaInput, mhaOutput, batch_beam, stream);
         attention_input = mhaInput;
         sync_check_cuda_error(stream);
