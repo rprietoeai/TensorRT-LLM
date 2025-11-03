@@ -2195,6 +2195,7 @@ int AttentionOp::enqueueGeneration(EnqueueGenerationParams<T> const& params, cud
     KVCacheBuffer kv_scale_cache_buffer;
 
     auto const sizePerToken = mNumAttnKVHeads * headSize * getKvCacheElemSizeInBits<T>() / 8 /*bits*/;
+    RAMON_LOG("---|---|---|---|--->size per token: " << sizePerToken);
 
     if (useKVCache())
     {
