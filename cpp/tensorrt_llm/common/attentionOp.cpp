@@ -1897,7 +1897,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
 
         if (!mIsMLAEnabled) // Only for non-MLA attention
         {
-            RAMON_LOG("---|---|---|---|--->mla is enabled");
+            RAMON_LOG("---|---|---|---|--->mla is not enabled");
             invokeKvCachePostprocessing(preprocessingParams, stream);
             sync_check_cuda_error(stream);
         }
