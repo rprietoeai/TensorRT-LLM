@@ -1364,6 +1364,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         }
         else if constexpr (std::is_same_v<KVCacheBuffer, KVLinearBuffer>)
         {
+            RAMON_LOG("---|---|---|---|--->KVCacheBuffer is same as KVLinearBuffer");
             using BufferDataType = typename KVCacheBuffer::DataType;
             kv_cache_buffer = KVLinearBuffer(params.batch_size,
                 isCrossAttention() ? params.cross_kv_length : params.max_attention_window_size, sizePerToken,
