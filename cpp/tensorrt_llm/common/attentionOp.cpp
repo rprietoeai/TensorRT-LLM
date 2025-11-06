@@ -1882,6 +1882,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         }
 
         // Run the fmha kernel.
+        RAMON_LOG("---|---|---|---|--->running the fmha kernel");
         mFmhaDispatcher->run(fmhaParams);
         sync_check_cuda_error(stream);
 
