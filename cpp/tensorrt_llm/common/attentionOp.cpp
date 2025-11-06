@@ -1641,6 +1641,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     // We update mEnableContextFMHA in constructor to check these conditions
     if (mEnableContextFMHA)
     {
+        RAMON_LOG("---|---|---|---|--->enable context fmha is true");
         // do all-to-all for params.attention_input, need to split on kv head
         // [token_num // cp_size, kv_heads, head_size] -> [token_num, kv_heads // cp_size, head_size]
         T* attention_input = const_cast<T*>(params.attention_input);
@@ -1888,6 +1889,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
 
         if (mCpSize > 1 && mAttnTpSize > 1 && mAttnCpSize == 1)
         {
+            RAMON_LOG("---|---|---|---|--->if mcpsize, attn tpsize and mattn cpsize");
             this->template ulyssesContextPostprocess<T>(gatherOutBuffer, reinterpret_cast<T*>(params.context_buf),
                 gatherInBuffer, params, cu_q_seqlens, cu_cp_partial_seqlens, stream);
             sync_check_cuda_error(stream);
@@ -1895,6 +1897,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
 
         if (!mIsMLAEnabled) // Only for non-MLA attention
         {
+            RAMON_LOG("---|---|---|---|--->mla is enabled");
             invokeKvCachePostprocessing(preprocessingParams, stream);
             sync_check_cuda_error(stream);
         }
