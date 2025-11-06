@@ -1609,10 +1609,12 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     KvCacheDataType cache_type{KvCacheDataType::BASE};
     if (mKVCacheQuantMode.hasInt8KvCache())
     {
+        RAMON_LOG("---|---|---|---|--->has int 8 kv cache");
         cache_type = KvCacheDataType::INT8;
     }
     else if (mKVCacheQuantMode.hasFp8KvCache())
     {
+        RAMON_LOG("---|---|---|---|--->has int fp8 kv cache");
         cache_type = KvCacheDataType::FP8;
     }
     else if (mKVCacheQuantMode.hasFp4KvCache())
