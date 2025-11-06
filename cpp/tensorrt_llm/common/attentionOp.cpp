@@ -1347,6 +1347,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         RAMON_LOG("---|---|---|---|--->Using kv cache");
         if constexpr (std::is_same_v<KVCacheBuffer, KVBlockArray>)
         {
+            RAMON_LOG("---|---|---|---|--->KV cache is the asme as KVBlockArray");
             kv_cache_buffer = KVBlockArray(params.batch_size, params.max_blocks_per_sequence, mTokensPerBlock,
                 sizePerToken, params.cyclic_attention_window_size, params.max_cyclic_attention_window_size,
                 params.sink_token_length, params.can_use_one_more_block, params.host_primary_pool_pointer,
