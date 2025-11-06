@@ -1437,7 +1437,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     RAMON_LOG("---|---|---|---|--->dim q per head:" << total_q_dim_all_heads);
     int const total_k_dim_all_heads
         = mNumAttnHeads * dim_k_per_head; // Assuming effective num_kv_heads = head_num for layout
-    RAMON_LOG("---|---|---|---|--->dim q per head:" << total_v_dim_all_heads);
+    RAMON_LOG("---|---|---|---|--->total k dim all heads:" << total_k_dim_all_heads);
     int const total_v_dim_all_heads
         = mNumAttnHeads * dim_v_per_head; // Assuming effective num_kv_heads = head_num for layout
     // Packed fp8 qkv buffer size for normal fp8 context FMHA
@@ -1569,7 +1569,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     // TODO: put this logic in the kernel above. currently not much concern because q_len is mostly = 1
     if (isUnfusedCrossAttention())
     {
-        RAMON_LOG("---|---|---|---|--->is unfused cross attention:" << total_v_dim_all_heads);
+        RAMON_LOG("---|---|---|---|--->is unfused cross attention");
         {
             std::vector<T> h_attention_mask(params.batch_size * params.input_seq_length * params.cross_kv_length, 1.);
             std::vector<int32_t> h_encoder_input_lengths(params.batch_size);
