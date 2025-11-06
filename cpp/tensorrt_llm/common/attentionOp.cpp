@@ -1386,11 +1386,13 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     }
     else if constexpr (std::is_same_v<T, float>)
     {
+        RAMON_LOG("---|---|---|---|--->Setting an FP32 gemm config");
         mCublasWrapper->setFP32GemmConfig();
     }
 #ifdef ENABLE_BF16
     else if constexpr (std::is_same_v<T, __nv_bfloat16>)
     {
+        RAMON_LOG("---|---|---|---|--->Setting an BF16 gemm config");
         mCublasWrapper->setBF16GemmConfig();
     }
 #endif
