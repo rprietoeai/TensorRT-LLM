@@ -1590,6 +1590,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
                     }
                 }
             }
+            RAMON_LOG("---|---|---|---|--->cuda memcpy");
             cudaMemcpyAsync(attention_mask, h_attention_mask.data(),
                 sizeof(T) * params.batch_size * params.cross_kv_length * params.input_seq_length,
                 cudaMemcpyHostToDevice, stream);
