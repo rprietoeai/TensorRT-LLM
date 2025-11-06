@@ -1405,6 +1405,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     size_t q_buf_2_size = 0;
     if (!mEnableContextFMHA)
     {
+        RAMON_LOG("---|---|---|---|--->Enabling context fmha");
         // Unfused mha
         q_buf_2_size = sizeof(T) * params.batch_size * params.input_seq_length * local_hidden_units_qo;
     }
