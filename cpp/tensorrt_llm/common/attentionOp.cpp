@@ -1329,6 +1329,7 @@ MLA_FUNC_DEFINE(__nv_bfloat16)
 template <typename T, typename KVCacheBuffer>
 int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStream_t stream)
 {
+    RAMON_LOG("---|---|---|---|--->Beginning of function");
     int const headSize = getHeadSize();
 
     int const local_hidden_units_qo = mNumHeads * headSize;
@@ -1343,6 +1344,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
 
     if (useKVCache())
     {
+        RAMON_LOG("---|---|---|---|--->Using kv cache");
         if constexpr (std::is_same_v<KVCacheBuffer, KVBlockArray>)
         {
             kv_cache_buffer = KVBlockArray(params.batch_size, params.max_blocks_per_sequence, mTokensPerBlock,
