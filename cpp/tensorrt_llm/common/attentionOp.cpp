@@ -1569,6 +1569,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     // TODO: put this logic in the kernel above. currently not much concern because q_len is mostly = 1
     if (isUnfusedCrossAttention())
     {
+        RAMON_LOG("---|---|---|---|--->is unfused cross attention:" << total_v_dim_all_heads);
         {
             std::vector<T> h_attention_mask(params.batch_size * params.input_seq_length * params.cross_kv_length, 1.);
             std::vector<int32_t> h_encoder_input_lengths(params.batch_size);
