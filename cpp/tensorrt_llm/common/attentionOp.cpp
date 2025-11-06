@@ -1646,6 +1646,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         T* attention_input = const_cast<T*>(params.attention_input);
         if (mCpSize > 1 && mAttnTpSize > 1 && mAttnCpSize == 1)
         {
+            RAMON_LOG("---|---|---|---|--->Ulysses context preprocess");
             this->template ulyssesContextPreprocess<T>(
                 attention_input, gatherInBuffer, gatherOutBuffer, params, cu_q_seqlens, cu_cp_partial_seqlens, stream);
             attention_input = gatherInBuffer;
@@ -1764,6 +1765,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         }
         else
         {
+            RAMON_LOG("---|---|---|---|--->invoke qkv preprocessing");
             invokeQKVPreprocessing(preprocessingParams, stream);
         }
         sync_check_cuda_error(stream);
@@ -1819,6 +1821,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         // Device buffer pointers.
         if (mIsMLAEnabled)
         {
+            RAMON_LOG("---|---|---|---|--->mla is enabled");
             // separate QKV input for context MLA
             if (mFP8ContextMLA)
             {
