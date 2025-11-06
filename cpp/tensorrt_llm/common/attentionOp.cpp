@@ -1985,6 +1985,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         }
         else if (mNumKVHeads == mNumHeads) // MHA
         {
+            RAMON_LOG("---|---|---|---|--->right before batched gemm, num kv heads is same as num heads");
             // Attn_weight[b*h, s_q, s_k] = Q[b*h, s_q, d] * K'[b*h, d, s_k]
             // Attn_weight'[b*h, s_k, s_q] = K[b*h, s_k, d] * Q'[b*h, d, s_q]
             mCublasWrapper->stridedBatchedGemm(CUBLAS_OP_T, CUBLAS_OP_N,
@@ -2017,6 +2018,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
                 int const qk_offset = ki * attention_seq_len_1 * num_qheads_per_kv_head * attention_seq_len_2;
                 void* qkptr = is_qk_buf_float_ ? static_cast<void*>(qk_buf_float_ + qk_offset)
                                                : static_cast<void*>(qk_buf_ + qk_offset);
+                RAMON_LOG("---|---|---|---|--->right before strided batched gemm, gqa");
                 mCublasWrapper->stridedBatchedGemm(CUBLAS_OP_T, CUBLAS_OP_N,
                     attention_seq_len_2,                                   // n
                     attention_seq_len_1 * num_qheads_per_kv_head,          // m
