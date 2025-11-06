@@ -432,7 +432,9 @@ public:
             AttentionOp::EnqueueContextParams<T> enqueue_params{common_enqueue_params};
             enqueue_params.host_block_offsets = host_block_offsets;
             enqueue_params.batch_size = num_seqs;
+            RAMON_LOG("---|---|---|--->k_ptr: " << k_ptr);
             enqueue_params.k_ptr = k_ptr;
+            RAMON_LOG("---|---|---|--->v_ptr: " << v_ptr);
             enqueue_params.v_ptr = v_ptr;
 
             if (op.isMLAEnabled())
