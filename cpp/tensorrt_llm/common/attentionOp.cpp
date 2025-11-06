@@ -1927,7 +1927,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
             // cross attention, write from self QKV [*, head_num * head_size + 2 * kv_head_num * head_size]to Q, write
             // from cross KV [*, 2 * kv_head_num * head_size] to K/V kernel modified accordingly to handle nullptr
             // buffer
-            RAMON_LOG("---|---|---|---|--->invoke add fused qkv bias transpose");
+            RAMON_LOG("---|---|---|---|--->invoke add fused qkv bias transpose, with cross attn");
             invokeAddFusedQKVBiasTranspose(q_buf_2_, (T*) nullptr, (T*) nullptr, const_cast<T*>(params.attention_input),
                 const_cast<T*>(params.qkv_bias), params.context_lengths, mRemovePadding ? padding_offset : nullptr,
                 params.batch_size, params.input_seq_length, params.num_tokens, mNumHeads, mNumKVHeads, getHeadSize(),
@@ -1947,6 +1947,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         // write KV to cache
         if (useKVCache())
         {
+            RAMON_LOG("---|---|---|---|--->we use kv cache");
             invokeTranspose4dBatchMajor(k_buf_2_, v_buf_2_, kv_cache_buffer, params.batch_size,
                 isCrossAttention() ? params.cross_kv_length : params.input_seq_length,
                 isCrossAttention() ? params.cross_kv_length : params.cyclic_attention_window_size, getHeadSize(),
