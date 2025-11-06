@@ -1843,6 +1843,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         }
         else
         {
+            RAMON_LOG("---|---|---|---|--->mla is not enabled");
             fmhaParams.qkvPtr = mFP8ContextFMHA ? reinterpret_cast<void const*>(fp8_qkv_buffer)
                                                 : reinterpret_cast<void const*>(attention_input);
             fmhaParams.qPtr = reinterpret_cast<void const*>(q_buf_2_);
