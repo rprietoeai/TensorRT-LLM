@@ -205,6 +205,7 @@ public:
                 TORCH_CHECK(k->strides()[1] == 1);
                 TORCH_CHECK(v->strides()[1] == 1);
 
+                RAMON_LOG("---|---|---|--->actualy updating k_ptr and v_ptr");
                 k_ptr = static_cast<T*>(k->slice(0, token_offset).data_ptr());
                 v_ptr = static_cast<T*>(v->slice(0, token_offset).data_ptr());
                 mla_params.k_buf = k_ptr;
