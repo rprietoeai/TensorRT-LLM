@@ -1601,6 +1601,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     // FIXME: a temporary solution to make sure the padding part is 0.
     if (!mRemovePadding)
     {
+        RAMON_LOG("---|---|---|---|--->cuda memset");
         cudaMemsetAsync(params.context_buf, 0, params.num_tokens * local_hidden_units_qo * sizeof(T), stream);
         sync_check_cuda_error(stream);
     }
