@@ -2147,6 +2147,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
                 T* qkptr = qk_buf_ + (ki * num_qheads_per_kv_head * attention_seq_len_1 * attention_seq_len_2);
                 T* vptr = v_buf_2_ + (ki * attention_seq_len_2 * getHeadSize());
                 T* qkvptr = qkv_buf_2_ + (ki * attention_seq_len_1 * num_qheads_per_kv_head * getHeadSize());
+                RAMON_LOG("---|---|---|---|--->right before strided batched geemm, gqa");
                 mCublasWrapper->stridedBatchedGemm(CUBLAS_OP_N, CUBLAS_OP_N,
                     getHeadSize(),                                         // n
                     num_qheads_per_kv_head * attention_seq_len_1,          // m
