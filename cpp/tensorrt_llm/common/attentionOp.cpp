@@ -1354,6 +1354,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
                 params.host_secondary_pool_pointer, params.block_offsets);
             if (mKVCacheQuantMode.hasFp4KvCache())
             {
+                RAMON_LOG("---|---|---|---|--->Is has an FP4 KV cache");
                 kv_scale_cache_buffer = KVBlockArray(params.batch_size, params.max_blocks_per_sequence, mTokensPerBlock,
                     sizePerToken / 8, params.cyclic_attention_window_size, params.max_cyclic_attention_window_size,
                     params.sink_token_length, params.can_use_one_more_block,
