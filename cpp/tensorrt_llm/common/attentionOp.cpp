@@ -1619,6 +1619,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     }
     else if (mKVCacheQuantMode.hasFp4KvCache())
     {
+        RAMON_LOG("---|---|---|---|--->has nvfp4 kv cache");
         cache_type = KvCacheDataType::NVFP4;
     }
 
