@@ -1430,6 +1430,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     int const dim_q_per_head = (mMLAParams.qk_rope_head_dim + mMLAParams.qk_nope_head_dim);
     int const dim_k_per_head = (mMLAParams.qk_rope_head_dim + mMLAParams.qk_nope_head_dim);
     int const dim_v_per_head = (mMLAParams.v_head_dim);
+    RAMON_LOG("---|---|---|---|--->dim q per head:" << dim_q_per_head);
 
     // Total dimension per token across all heads for Q, K, and V components respectively
     int const total_q_dim_all_heads = mNumAttnHeads * dim_q_per_head;
