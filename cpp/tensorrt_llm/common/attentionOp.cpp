@@ -1966,7 +1966,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
         {
             // Attn_weight[b, h*s_q, s_k] = Q[b, h*s_q, d] * K'[b, d, s_k]
             // Attn_weight'[b, s_k, h*s_q] = K[b, s_k, d] * Q'[b, d, h*s_q]
-            RAMON_LOG("---|---|---|---|--->right before batched gemm");
+            RAMON_LOG("---|---|---|---|--->right before batched gemm, only one kv head");
             mCublasWrapper->stridedBatchedGemm(CUBLAS_OP_T, CUBLAS_OP_N,
                 attention_seq_len_2,                                   // n
                 attention_seq_len_1 * mNumHeads,                       // m
