@@ -1381,6 +1381,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     mCublasWrapper->setWorkspace(params.workspace);
     if constexpr (std::is_same_v<T, half>)
     {
+        RAMON_LOG("---|---|---|---|--->Setting an FP16 gemm config");
         mCublasWrapper->setFP16GemmConfig();
     }
     else if constexpr (std::is_same_v<T, float>)
