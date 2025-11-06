@@ -156,7 +156,7 @@ public:
         torch::optional<torch::Tensor> sparse_attn_offsets) const override
     {
         RAMON_LOG("---|---|---|--->Beginning of function.");
-        RAMON_LOG("---|---|---|--->qkv_or_q: " << qkv_or_q);
+        RAMON_LOG("---|---|---|--->qkv_or_q ptr: " << qkv_or_q.data_ptr());
         auto stream = at::cuda::getCurrentCUDAStream(qkv_or_q.get_device());
         T* attention_input = static_cast<T*>(qkv_or_q.slice(0, token_offset).data_ptr());
         T* k_ptr = nullptr;
@@ -848,7 +848,7 @@ void attention(torch::Tensor q, std::optional<torch::Tensor> k, std::optional<to
     {
         auto seq_offset = 0;
         auto token_offset = 0;
-        RAMON_LOG("---|---|--->qkv_or_q: " << qkv_or_q);
+        RAMON_LOG("---|---|--->qkv_or_q data ptr: " << qkv_or_q.data_ptr());
         RAMON_LOG("---|---|--->right before runner->run, case 0");
         runner->run(*op,
             /*is_context=*/true, seq_offset,
