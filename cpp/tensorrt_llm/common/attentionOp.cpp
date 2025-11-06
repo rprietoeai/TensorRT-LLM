@@ -2168,16 +2168,19 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
 
         if (!mRemovePadding)
         {
+            RAMON_LOG("---|---|---|---|--->Invoke tranpose qkv");
             invokeTransposeQKV(static_cast<T*>(params.context_buf), qkv_buf_2_, params.batch_size, attention_seq_len_1,
                 mNumHeads, getHeadSize(), (float*) nullptr, 0, stream);
         }
         else
         {
+            RAMON_LOG("---|---|---|---|--->invoke transpose attention out remove padding");
             invokeTransposeAttentionOutRemovePadding(qkv_buf_2_, static_cast<T*>(params.context_buf), params.num_tokens,
                 params.batch_size, attention_seq_len_1, mNumHeads, getHeadSize(), padding_offset, (float*) nullptr, 0,
                 stream);
         }
     }
+    RAMON_LOG("---|---|---|---|--->returning success");
     return 0;
 }
 
