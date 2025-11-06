@@ -1375,6 +1375,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     }
 
     auto cublasHandle = mCublasWrapper->getCublasHandle();
+    RAMON_LOG("---|---|---|---|--->It seems like we are using a cublas handle");
     TLLM_CUDA_CHECK(cublasSetStream(cublasHandle, stream));
     mCublasWrapper->setStream(stream);
     mCublasWrapper->setWorkspace(params.workspace);
