@@ -1437,6 +1437,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     RAMON_LOG("---|---|---|---|--->dim q per head:" << total_q_dim_all_heads);
     int const total_k_dim_all_heads
         = mNumAttnHeads * dim_k_per_head; // Assuming effective num_kv_heads = head_num for layout
+    RAMON_LOG("---|---|---|---|--->dim q per head:" << total_v_dim_all_heads);
     int const total_v_dim_all_heads
         = mNumAttnHeads * dim_v_per_head; // Assuming effective num_kv_heads = head_num for layout
     // Packed fp8 qkv buffer size for normal fp8 context FMHA
