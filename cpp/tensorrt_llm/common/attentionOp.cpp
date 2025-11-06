@@ -1411,6 +1411,7 @@ int AttentionOp::enqueueContext(EnqueueContextParams<T> const& params, cudaStrea
     }
     else if (mFmhaDispatcher->isSeparateQAndKvInput())
     {
+        RAMON_LOG("---|---|---|---|--->Seaparate qa and kv input");
         // Paged context fmha
         q_buf_2_size = (mFP8ContextFMHA ? 1 : sizeof(T)) * params.num_tokens * local_hidden_units_qo;
     }
