@@ -232,6 +232,7 @@ void FmhaDispatcher::run(MHARunnerParams runnerParams)
         tllmRunnerParams.softmaxStatsPtr = reinterpret_cast<float2*>(runnerParams.softmaxStatsPtr);
         tllmRunnerParams.stream = runnerParams.stream;
 
+        RAMON_LOG("---|---|---|---|---|--->Right before mTllGenFMHARunner.");
         mTllmGenFMHARunner->run(tllmRunnerParams);
     }
     else
