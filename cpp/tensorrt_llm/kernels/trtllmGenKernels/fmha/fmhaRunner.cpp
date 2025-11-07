@@ -56,6 +56,7 @@ void TllmGenFmhaRunner::run(TllmGenFmhaRunnerParams const& runnerParams)
     RAMON_LOG("---|---|---|---|---|---|--->Inside function");
     RAMON_LOG("---|---|---|---|---|---|--->Right before runnning mKernel");
     mKernel->run(runnerParams);
+    RAMON_LOG("---|---|---|---|---|---|--->Returning");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
