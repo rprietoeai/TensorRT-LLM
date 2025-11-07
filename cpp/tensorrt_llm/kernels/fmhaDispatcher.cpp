@@ -179,6 +179,7 @@ void FmhaDispatcher::run(MHARunnerParams runnerParams)
         memset(&tllmRunnerParams, 0, sizeof(tllmRunnerParams));
 
         // Parameters to select kernels.
+        RAMON_LOG("---|---|---|---|---|--->Parameters to select kernels.");
         tllmRunnerParams.mQkvLayout = qkvLayout;
         tllmRunnerParams.setAttentionMaskType(static_cast<std::int8_t>(mFixedParams.attentionMaskType));
         tllmRunnerParams.mKernelType = FmhaKernelType::Context;
