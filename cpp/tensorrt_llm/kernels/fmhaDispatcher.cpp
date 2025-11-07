@@ -171,6 +171,7 @@ void FmhaDispatcher::run(MHARunnerParams runnerParams)
         }
         else if (mFixedParams.attentionInputLayout == AttentionInputLayout::SEPARATE_Q_K_V)
         {
+            RAMON_LOG("---|---|---|---|---|--->is seprate q k v, not paged");
             qkvLayout = kernels::QkvLayout::SeparateQkv;
         }
 
