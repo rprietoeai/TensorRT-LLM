@@ -160,6 +160,7 @@ void FmhaDispatcher::run(MHARunnerParams runnerParams)
         int32_t numTokensPerBlock = 0;
         if (mFixedParams.attentionInputLayout == AttentionInputLayout::Q_PAGED_KV)
         {
+            RAMON_LOG("---|---|---|---|---|--->is q paged kv");
             qkvLayout = kernels::QkvLayout::PagedKv;
             auto pagedKvCache = runnerParams.pagedKvCache.copyKVBlockArrayForContextFMHA();
             kvPoolPtr = pagedKvCache.mPrimaryPoolPtr;
