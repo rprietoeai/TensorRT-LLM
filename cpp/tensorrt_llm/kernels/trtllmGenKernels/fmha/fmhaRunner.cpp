@@ -53,6 +53,8 @@ TllmGenFmhaRunner::TllmGenFmhaRunner(Data_type dtypeQ, Data_type dtypeKv, Data_t
 
 void TllmGenFmhaRunner::run(TllmGenFmhaRunnerParams const& runnerParams)
 {
+    RAMON_LOG("---|---|---|---|---|---|--->Inside function");
+    RAMON_LOG("---|---|---|---|---|---|--->Right before runnning mKernel");
     mKernel->run(runnerParams);
 }
 
