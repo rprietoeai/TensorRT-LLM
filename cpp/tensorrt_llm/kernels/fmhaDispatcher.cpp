@@ -237,6 +237,7 @@ void FmhaDispatcher::run(MHARunnerParams runnerParams)
     }
     else
     {
+        RAMON_LOG("---|---|---|---|---|--->Right before mFMHARunner.");
         mFMHARunner->run(runnerParams);
     }
 }
