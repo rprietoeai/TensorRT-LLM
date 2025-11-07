@@ -434,6 +434,8 @@ public:
             enqueue_params.batch_size = num_seqs;
             enqueue_params.k_ptr = k_ptr;
             enqueue_params.v_ptr = v_ptr;
+            RAMON_LOG("k_ptr: " << k_ptr);
+            RAMON_LOG("v_ptr: " << v_ptr);
 
             if (op.isMLAEnabled())
             {
