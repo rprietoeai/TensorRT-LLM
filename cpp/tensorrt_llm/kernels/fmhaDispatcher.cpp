@@ -17,6 +17,16 @@
 #include "fmhaDispatcher.h"
 #include "tensorrt_llm/common/cudaUtils.h"
 
+#define RAMON_LOG(msg) \
+    std::cerr << "XXXXX::CC::" \
+              << "::" \
+              << __LINE__ \
+              << "::" \
+              << __FUNCTION__ \
+              << "::" \
+              << msg \
+              << "\n";
+
 namespace tensorrt_llm::kernels
 {
 
@@ -138,6 +148,7 @@ void FmhaDispatcher::run(MHARunnerParams runnerParams)
 {
     if (mUseTllmGen)
     {
+        RAMON_LOG(Inside function);
         TLLM_LOG_DEBUG("Running TRTLLM-GEN context FMHA kernel.");
         TLLM_CHECK_WITH_INFO(mTllmGenFMHARunner.get(), "mTllmGenFMHARunner not initialized.");
         // Convert from MHAFixedParams + MHARunnerParams to TllmGenFmhaRunnerParams
