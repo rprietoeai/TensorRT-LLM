@@ -14,6 +14,17 @@
  * limitations under the License.
  */
 
+#define RAMON_LOG(msg) \
+    std::cerr << "XXXXX::CC::" \
+              << "::" \
+              << __LINE__ \
+              << "::" \
+              << __FUNCTION__ \
+              << "::" \
+              << msg \
+              << "\n";
+
+
 #include "fmhaRunner.h"
 #include "tensorrt_llm/common/cudaUtils.h"
 #include "tensorrt_llm/kernels/contextFusedMultiHeadAttention/fused_multihead_attention_common.h"
