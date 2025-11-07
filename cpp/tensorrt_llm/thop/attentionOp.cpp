@@ -157,8 +157,8 @@ public:
     {
         RAMON_LOG("---|---|---|--->Beginning of function.");
         RAMON_LOG("---|---|---|--->qkv_or_q ptr: " << qkv_or_q.data_ptr<float>());
-        RAMON_LOG("---|---|---|--->k ptr: " << k.data_ptr<float>());
-        RAMON_LOG("---|---|---|--->v ptr: " << v.data_ptr<float>());
+        RAMON_LOG("---|---|---|--->k.has_value(): " << k.has_value());
+        RAMON_LOG("---|---|---|--->v.has_value(): " << v.has_value());
         auto stream = at::cuda::getCurrentCUDAStream(qkv_or_q.get_device());
         T* attention_input = static_cast<T*>(qkv_or_q.slice(0, token_offset).data_ptr());
         T* k_ptr = nullptr;
