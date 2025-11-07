@@ -242,6 +242,7 @@ void FmhaDispatcher::run(MHARunnerParams runnerParams)
         RAMON_LOG("---|---|---|---|---|--->Right before mFMHARunner.");
         mFMHARunner->run(runnerParams);
     }
+    RAMON_LOG("---|---|---|---|---|--->Function returning.");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
