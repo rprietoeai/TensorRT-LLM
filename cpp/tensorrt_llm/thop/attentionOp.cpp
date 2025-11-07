@@ -156,6 +156,8 @@ public:
         torch::optional<torch::Tensor> sparse_attn_offsets) const override
     {
         RAMON_LOG("Entering function");
+        RAMON_LOG("k has value: " << k.has_value());
+        RAMON_LOG("k has value: " << v.has_value());
         auto stream = at::cuda::getCurrentCUDAStream(qkv_or_q.get_device());
         T* attention_input = static_cast<T*>(qkv_or_q.slice(0, token_offset).data_ptr());
         T* k_ptr = nullptr;
