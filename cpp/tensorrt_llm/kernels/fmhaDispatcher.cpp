@@ -146,9 +146,10 @@ bool FmhaDispatcher::isSupported()
 
 void FmhaDispatcher::run(MHARunnerParams runnerParams)
 {
+    RAMON_LOG("---|---|---|---|---|--->Inside function");
     if (mUseTllmGen)
     {
-        RAMON_LOG("---|---|---|---|---|--->Inside function");
+        RAMON_LOG("---|---|---|---|---|--->mUseTllmGen is true");
         TLLM_LOG_DEBUG("Running TRTLLM-GEN context FMHA kernel.");
         TLLM_CHECK_WITH_INFO(mTllmGenFMHARunner.get(), "mTllmGenFMHARunner not initialized.");
         // Convert from MHAFixedParams + MHARunnerParams to TllmGenFmhaRunnerParams
@@ -237,6 +238,7 @@ void FmhaDispatcher::run(MHARunnerParams runnerParams)
     }
     else
     {
+        RAMON_LOG("---|---|---|---|---|--->mUseTllmGen is false");
         RAMON_LOG("---|---|---|---|---|--->Right before mFMHARunner.");
         mFMHARunner->run(runnerParams);
     }
