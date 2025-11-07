@@ -186,7 +186,7 @@ public:
 
     void run(RunnerParams const& params) const
     {
-        RAMON_LOG("---|---|---|---|---|---|---|--->Inside function");
+        RAMON_LOG("---|---|---|---|---|---|---|--->Inside function, TllmGenFmhaKernel");
         // The selectKernelParams that might be updated.
         SelectKernelParams selectKernelParams{params};
         // The iteration index (used to detect a deadlock of selecting new kernels).
