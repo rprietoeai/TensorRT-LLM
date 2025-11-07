@@ -16,6 +16,17 @@
 
 #pragma once
 
+#define RAMON_LOG(msg) \
+    std::cerr << "XXXXX::CC::" \
+              << "::" \
+              << __LINE__ \
+              << "::" \
+              << __FUNCTION__ \
+              << "::" \
+              << msg \
+              << "\n";
+
+
 #include "cuda_runtime_api.h"
 #include <memory>
 #include <mutex>
